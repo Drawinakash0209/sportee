@@ -5,13 +5,13 @@
 @section('content')
 
 <div
-class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
+class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24 mb-24"
 >
 <header class="text-center">
     <h2 class="text-2xl font-bold uppercase mb-1">
-        Register
+        Login
     </h2>
-    <p class="mb-4">Create an account to post gigs</p>
+    <p class="mb-4">Login into your account to post indoor facilities</p>
 </header>
 
 <form method="POST" action="/users/authenticate">
@@ -25,7 +25,7 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
         <input
             type="email"
             class="border border-gray-200 rounded p-2 w-full"
-            name="email"  value={{old('email')}}
+            name="email"  value="{{old('email')}}"
         />
         <!-- Error Example -->
         @error('email')
@@ -55,7 +55,7 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
     <div class="mb-6">
         <button
             type="submit"
-            class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
+            class="bg-red-500 text-white rounded py-2 px-4 hover:bg-black"
         >
             Sign in
         </button>

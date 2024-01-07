@@ -21,7 +21,6 @@ Feature indoors section --}}
 
 <section class="pt-40 pb-32 relative">
     <div class="absolute w-full h-full top-0 left-0 bg-cover bg-center bg-no-repeat  bg-fixed" style="background-image:url(/images/parallaxfinal.jpg)"></div>
-    {{-- <h1 class="text-white display-2 text-center relative text-sm md:text-base lg:text-lg xl:text-xl">ENDURE : STRIVE : CONQUER</h1> --}}
     <h1 class="text-white  display-2  relative text-center font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl" >
         <span class="text-red-500">ENDURE</span> : STRIVE : <span class="text-red-500"> CONQUER</span>
       </h1>
@@ -351,17 +350,6 @@ Feature indoors section --}}
                 <img class="object-contain w-full h-8 mx-auto" src="https://cdn.rareblocks.xyz/collection/celebration/images/logos/3/logo-3.png" alt="">
             </div>
 
-            <div class="bg-white h-12 flex shadow-lg items-center justify-center">
-                <img class="object-contain w-full mx-auto h-7" src="https://cdn.rareblocks.xyz/collection/celebration/images/logos/3/logo-4.png" alt="">
-            </div>
-
-            <div class="bg-white h-12 flex shadow-lg items-center justify-center">
-                <img class="object-contain w-full h-8 mx-auto" src="https://cdn.rareblocks.xyz/collection/celebration/images/logos/3/logo-5.png" alt="">
-            </div>
-
-            <div class="bg-white h-12 flex shadow-lg items-center justify-center">
-                <img class="object-contain w-full h-8 mx-auto" src="https://cdn.rareblocks.xyz/collection/celebration/images/logos/3/logo-6.png" alt="">
-            </div>
 
             <div class="bg-white h-12 flex shadow-lg items-center justify-center">
                 <img class="object-contain w-full h-8 mx-auto" src="https://cdn.rareblocks.xyz/collection/celebration/images/logos/3/logo-7.png" alt="">
@@ -383,10 +371,8 @@ Feature indoors section --}}
                 <img class="object-contain w-full h-8 mx-auto" src="https://cdn.rareblocks.xyz/collection/celebration/images/logos/3/logo-11.png" alt="">
             </div>
 
-            <div class="bg-white h-12 flex shadow-lg items-center justify-center">
-                <img class="object-contain w-full h-8 mx-auto" src="https://cdn.rareblocks.xyz/collection/celebration/images/logos/3/logo-12.png" alt="">
-            </div>
-        </div>
+            
+        </div> 
 
         <div class="flex items-center justify-center mt-10 space-x-3 md:hidden">
             <div class="w-2.5 h-2.5 rounded-full bg-blue-600 block"></div>

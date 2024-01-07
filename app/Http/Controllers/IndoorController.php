@@ -62,6 +62,10 @@ class IndoorController extends Controller
             'contact_number' => 'required',
             'price' => 'required'
         ]);
+
+        if($request->hasFile('photo')){
+            $formFields['photo'] = $request->file('photo')->store('photos','public');
+        }
      
         $formFields['user_id'] = auth()->id();
      

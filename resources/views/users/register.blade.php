@@ -5,13 +5,13 @@
 @section('content')
 
 <div
-class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
+class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24 mb-24"
 >
 <header class="text-center">
     <h2 class="text-2xl font-bold uppercase mb-1">
         Register
     </h2>
-    <p class="mb-4">Create an account to post gigs</p>
+    <p class="mb-4">Create an account to post your indoor facilities</p>
 </header>
 
 <form method="POST" action="/users">
@@ -84,7 +84,7 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
     <div class="mb-6">
         <button
             type="submit"
-            class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
+            class="bg-red-500 text-white rounded py-2 px-4 hover:bg-black"
         >
             Sign Up
         </button>

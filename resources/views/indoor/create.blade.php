@@ -149,7 +149,7 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
     <p class="mb-4">Post a Indoor to find customers</p>
 </header>
 
-<form  method="POST" action="/home">
+<form  method="POST" action="/home" enctype="multipart/form-data">
     @csrf
     
 
@@ -281,17 +281,23 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
             
         @enderror
     </div>
-{{-- 
+
     <div class="mb-6">
-        <label for="logo" class="inline-block text-lg mb-2">
+        <label for="photo" class="inline-block text-lg mb-2">
             Company Logo
         </label>
         <input
             type="file"
             class="border border-gray-200 rounded p-2 w-full"
-            name="logo"
+            name="photo"
         />
-    </div> --}}
+        
+        @error('photo')
+        <p class="text-red-500 text-xs mt-1"> {{$message}}</p>
+    
+            
+        @enderror
+    </div>
 
     <div class="mb-6">
         <label

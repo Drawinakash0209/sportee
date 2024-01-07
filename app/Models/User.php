@@ -42,4 +42,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    //RElationship
+    public function indoors(){
+        return $this->hasMany(Indoor::class, 'user_id');
+    }
 }

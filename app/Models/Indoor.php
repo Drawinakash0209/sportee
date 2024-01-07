@@ -9,7 +9,7 @@ class Indoor extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'tags', 'location', 'email', 'website', 'description','contact_number', 'price'];
+    protected $fillable = ['title', 'tags', 'location', 'email', 'website', 'description','contact_number', 'price','user_id'];
 
 
     public function scopeFilters($query, array $filter){
@@ -22,5 +22,10 @@ class Indoor extends Model
             ->orwhere('tags', 'like', '%' . request('search') . '%')
             ->orwhere('location', 'like', '%' . request('search') . '%');
         };
+    }
+
+    // relationship
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

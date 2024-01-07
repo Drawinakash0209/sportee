@@ -1,13 +1,12 @@
 @extends('layout')
 @section('content')
 @include('partials._hero')
-@include('partials._search')
+
    
 {{-- 
 Feature indoors section --}}
- <section>
+ <section class="mb-12 ">
     <h1 class="mb-12 text-center font-Bebas Neue text-5xl font-bold wrappermain">Featured Indoors</h1>
-
          <div class="mx-auto grid max-w-screen-lg grid-cols-1 gap-5 p-5 sm:grid-cols-2 md:grid-cols-3 lg:gap-10">
 
     @foreach ($indoors as $item)
@@ -17,6 +16,19 @@ Feature indoors section --}}
 
 </div>
 </section>
+
+
+
+<section class="pt-40 pb-32 relative">
+    <div class="absolute w-full h-full top-0 left-0 bg-cover bg-center bg-no-repeat  bg-fixed" style="background-image:url(/images/parallaxfinal.jpg)"></div>
+    {{-- <h1 class="text-white display-2 text-center relative text-sm md:text-base lg:text-lg xl:text-xl">ENDURE : STRIVE : CONQUER</h1> --}}
+    <h1 class="text-white  display-2  relative text-center font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl" >
+        <span class="text-red-500">ENDURE</span> : STRIVE : <span class="text-red-500"> CONQUER</span>
+      </h1>
+
+
+  </section>
+
 
 <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-12">
     <div class="text-center pb-12">
@@ -311,6 +323,10 @@ Feature indoors section --}}
 
 @include('partials._testimonials')
 
+
+
+
+
 {{-- Our partners section  --}}
 
 <section class=" relative bg-white sm:py-10 lg:py-16 lg:pt-10">
@@ -324,7 +340,7 @@ Feature indoors section --}}
 
         <div class=" grid items-center max-w-4xl grid-cols-2 gap-4 mx-auto mt-12 md:mt-20 md:grid-cols-4  ">
             <div class="bg-white h-12 flex shadow-lg items-center justify-center">
-                <img class="object-contain w-full h-6 mx-auto" src="https://cdn.rareblocks.xyz/collection/celebration/images/logos/3/logo-1.png" alt="">
+                <img class="object-contain w-full h-8 mx-auto" src="https://cdn.rareblocks.xyz/collection/celebration/images/logos/3/logo-1.png" alt="">
             </div>
 
             <div class="bg-white h-12 flex shadow-lg items-center justify-center">

@@ -13,12 +13,16 @@ return new class extends Migration
     {
         Schema::create('indoors', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()
+            ->onDelete('cascade');
             $table->string('title');
             $table->string('tags');
             $table->string('location');
             $table->string('email');
             $table->string('website');
             $table->longText('description');
+            $table->string('contact_number');
+            $table->string('price');
 
             $table->timestamps();
         });

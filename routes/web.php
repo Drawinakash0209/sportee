@@ -25,27 +25,31 @@ use App\Models\Tournament;
 
 Route::get('/', [IndoorController::class, 'index']);
 
-Route::get('/home/create', [IndoorController::class, 'create']);
+//create form
+Route::get('/home/create', [IndoorController::class, 'create'])->middleware('auth');
 
-Route::post('/home', [IndoorController::class, 'store']);
+Route::post('/home', [IndoorController::class, 'store'])->middleware('auth');
 
 Route::get('/home/{indoors}', [IndoorController::class, 'show']);
 
-Route::get('/register',[userController::class, 'create']);
+
+//Register form
+Route::get('/register',[userController::class, 'create'])->middleware('guest');
 
 Route::post('/users',[userController::class, 'store']);
 
 
+  //login form
+Route::get('/login',[userController::class, 'login'])->name('login')->middleware('guest');
+
 //logout
+Route::post('/logout',[userController::class, 'logout'])->middleware('auth');
 
-Route::post('/logout',[userController::class, 'logout']);
-
-
-//login form
-
-Route::get('/login',[userController::class, 'login']);
 
 Route::post('/users/authenticate',[userController::class, 'authenticate']);
+
+Route::post('/listings', 'ListingController@store')->middleware('auth'); //
+
 
 // Route::get('/',[TournamentController::class, 'index']);
 

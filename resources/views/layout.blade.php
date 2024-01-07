@@ -21,8 +21,6 @@
 <body>
 
     <header class="head"> 
-
-    
         <a href="#" class="indoorLogo">SPORTEE</a>
 
 
@@ -46,11 +44,13 @@
                 Welcome {{auth()->user()->name}} !
             </span>
             <a href="/indoor/manager" style="--i:1;" class=" text-lg">Manage</a>
+
             <form class="inline" method="POST" action="/logout">
               @csrf
               <button type="submit" class="text-white text-lg px-5">
                 <i class="fa-solid fa-right-from-bracket text-white  text-lg px-2"></i>Log out
               </button>
+            </form>
             @else
             <a href="/login" style="--i:1;">Login</a>
             <a href="/register" style="--i:2;">Sign up</a>
@@ -60,6 +60,23 @@
         </nav>
 
     </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     
 
@@ -139,4 +156,9 @@
     <x-message />
 
 </body>
+
+
+
+
+
 </html>

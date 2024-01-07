@@ -26,9 +26,33 @@ class IndoorController extends Controller
         return view('indoor.create');
     }
 
-    public function store(Request $request){
+    // public function store(Request $request){
 
-        $formField = $request->validate([
+    //     $formFields = $request->validate([
+    //         'title'=> 'required',
+    //         'tags'=>'required',
+    //         'location' => 'required',
+    //         'email' => 'required',
+    //         'website' => 'required',
+    //         'description' => 'required',
+    //         'contact_number' => 'required',
+    //         'price' => 'required'
+    //     ]);
+
+    //     $formFields['user_id'] = auth()->id();
+
+    //     Indoor::create($formFields);
+
+    //     return redirect('/')->with('message', 'Listing created successfully !');
+
+        
+
+
+    // }
+
+
+    public function store(Request $request){
+        $formFields = $request->validate([
             'title'=> 'required',
             'tags'=>'required',
             'location' => 'required',
@@ -38,13 +62,11 @@ class IndoorController extends Controller
             'contact_number' => 'required',
             'price' => 'required'
         ]);
-
-        Indoor::create($formField);
-
+     
+        $formFields['user_id'] = auth()->id();
+     
+        Indoor::create($formFields);
+     
         return redirect('/')->with('message', 'Listing created successfully !');
-
-        
-
-
-    }
+     }
 }

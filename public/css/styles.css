@@ -96,7 +96,7 @@ body {
     background: rgba(0,0,0,0.5)url(/images/homepage-Background.jpg) center/cover no-repeat;
     width: 100%;
     background-blend-mode: darken;
-    height: 70vh ;
+    height: 76vh ;
     
 }
 
@@ -505,6 +505,23 @@ footer{
 .head{
     padding: 1.2rem 5%;
 }
+
+
+.hero-content h1{
+    font-size: 50px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    font-family: 'Bebas Neue', sans-serif;
+    text-transform: uppercase;
+}
+.hero-content p{
+    margin-bottom: 30px;
+    font-size: 16px;
+    letter-spacing: 1px;
+   
+    
+}
+ 
 }
 
 @media (max-width: 768px){
@@ -580,6 +597,21 @@ footer{
     
         }
     
+.hero-content h1{
+    font-size: 30px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    font-family: 'Bebas Neue', sans-serif;
+    text-transform: uppercase;
+}
+.hero-content p{
+    margin-bottom: 20px;
+    font-size: 15px;
+    letter-spacing: 1px;
+   
+    
+}
+ 
 
   
 }

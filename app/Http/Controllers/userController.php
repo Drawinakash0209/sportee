@@ -36,6 +36,12 @@ class userController extends Controller
 
     }
 
+    public function login(){
+        return view('users.login');
+    }
+
+    
+
     public function logout(Request $request){
         auth()->logout();
         $request-> session()->invalidate();
@@ -44,9 +50,8 @@ class userController extends Controller
         return redirect('/')->with('message','you have been logged out');
 
     }
-    public function login(){
-        return view('users.login');
-    }
+
+    
 
     public function authenticate(Request $request){
         $formFields =$request->validate([

@@ -22,17 +22,22 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
+      $user = User::factory()->create([
+        'name' => 'Administrator',
+        'email' => 'admin@admin.com',
+        'role_id' => 1
+      ]);
 
       // \App\Models\User::factory(5)->create();\\
 
-      $user = User::factory()->create([
-        'name' => 'john Doe',
-        'email' => 'john@gmail.com'
-      ]);
+      // $user = User::factory()->create([
+      //   'name' => 'john Doe',
+      //   'email' => 'john@gmail.com'
+      // ]);
 
-      Indoor::factory(6)->create([
-        'user_id'=>$user->id
-      ]);
+      // Indoor::factory(6)->create([
+      //   'user_id'=>$user->id
+      // ]);
 
    
 

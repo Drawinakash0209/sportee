@@ -30,6 +30,9 @@ Route::get('/home/create', [IndoorController::class, 'create'])->middleware('aut
 
 Route::post('/home', [IndoorController::class, 'store'])->middleware('auth');
 
+//manage
+Route::get('/home/manage', [IndoorController::class, 'manage']); 
+
 Route::get('/home/{indoors}', [IndoorController::class, 'show']);
 
 
@@ -39,7 +42,12 @@ Route::get('home/{indoors}/edit', [IndoorController::class, 'edit']);
 //edit submit to update
 Route::put('/home/{indoors}', [IndoorController::class, 'update']);
 
+
+//delete
 Route::delete('/home/{indoors}', [IndoorController::class, 'destroy']);
+
+
+
 
 //Register form
 Route::get('/register',[userController::class, 'create'])->middleware('guest');
@@ -57,6 +65,9 @@ Route::post('/logout',[userController::class, 'logout'])->middleware('auth');
 Route::post('/users/authenticate',[userController::class, 'authenticate']);
 
 Route::post('/listings', 'ListingController@store')->middleware('auth'); //
+
+//manage
+
 
 
 // Route::get('/',[TournamentController::class, 'index']);

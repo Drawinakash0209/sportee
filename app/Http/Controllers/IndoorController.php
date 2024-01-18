@@ -81,6 +81,12 @@ class IndoorController extends Controller
 
  //update indoor
      public function update(Request $request, Indoor $indoors){
+
+        //make sure logged in user is owner
+
+        if (auth()->user()->id !== $indoors->user_id){
+            abort(403, 'Unauthorized action');
+        }
         $formFields = $request->validate([
             'title'=> 'required',
             'tags'=>'required',
@@ -105,9 +111,27 @@ class IndoorController extends Controller
 
      //delete indoor\
         public function destroy(Indoor $indoors){
+             //make sure logged in user is owner
+
+        if (auth()->user()->id !== $indoors->user_id){
+            abort(403, 'Unauthorized action');
+        }
             $indoors->delete();
             return redirect('/')->with('message', 'Listing deleted successfully !');
         }
 
+        //Manage indoors
+        public function manage(){
+            return view('indoor.manage', [
+                'indoors'=>auth()->user()->indoors
+             ]);
+        }
+
+
+        // public function manage(){
+        //     return view('indoor.manage', [
+        //         'indoors'=>auth()->user()->indoor()->get()
+        //     ]);
+        // }
      
 }

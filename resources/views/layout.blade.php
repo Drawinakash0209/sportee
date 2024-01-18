@@ -44,7 +44,8 @@
             <span class="text-white text-lg">
                 Welcome {{auth()->user()->name}} !
             </span>
-            <a href="/indoor/manager" style="--i:1;" class=" text-lg">Manage</a>
+            
+            <a href="/home/manage" style="--i:1;" class=" text-lg">Manage</a>
 
             <form class="inline" method="POST" action="/logout">
               @csrf

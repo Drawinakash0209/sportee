@@ -22,7 +22,7 @@
 <body>
 
     <header class="head"> 
-        <a href="#" class="indoorLogo">SPORTEE</a>
+        <a href="/" class="indoorLogo">SPORTEE</a>
 
 
         <input type="checkbox" id="ch">

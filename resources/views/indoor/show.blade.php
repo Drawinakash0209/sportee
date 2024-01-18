@@ -35,6 +35,8 @@
         </div>
       </div>
     </div>
+
+    <a href="/home/{{$indoors->id}}/edit" class="text-blue-500">Edit</a>
     
     </section>
     @endsection

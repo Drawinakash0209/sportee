@@ -33,6 +33,13 @@ Route::post('/home', [IndoorController::class, 'store'])->middleware('auth');
 Route::get('/home/{indoors}', [IndoorController::class, 'show']);
 
 
+//edit form 
+Route::get('home/{indoors}/edit', [IndoorController::class, 'edit']);
+
+//edit submit to update
+Route::put('/home/{indoors}', [IndoorController::class, 'update']);
+
+
 //Register form
 Route::get('/register',[userController::class, 'create'])->middleware('guest');
 

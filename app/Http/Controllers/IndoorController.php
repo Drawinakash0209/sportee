@@ -15,7 +15,7 @@ class IndoorController extends Controller
             
         ]);
     }
-
+// show individual Indoors
     public function show(Indoor $indoors){
         return view('indoor.show', [
             'indoors'=> $indoors
@@ -24,6 +24,11 @@ class IndoorController extends Controller
 
     public function create(){
         return view('indoor.create');
+    }
+
+    //show edit form 
+    public function edit(Indoor $indoors){
+        return view('indoor.edit', ['indoors'=>$indoors]);
     }
 
     // public function store(Request $request){
@@ -73,4 +78,30 @@ class IndoorController extends Controller
      
         return redirect('/')->with('message', 'Listing created successfully !');
      }
+
+ //update indoor
+     public function update(Request $request, Indoor $indoors){
+        $formFields = $request->validate([
+            'title'=> 'required',
+            'tags'=>'required',
+            'location' => 'required',
+            'email' => 'required',
+            'website' => 'required',
+            'description' => 'required',
+            'contact_number' => 'required',
+            'price' => 'required'
+        ]);
+
+        if($request->hasFile('photo')){
+            $formFields['photo'] = $request->file('photo')->store('photos','public');
+        }
+     
+        $formFields['user_id'] = auth()->id();
+     
+        $indoors->create($formFields);
+     
+        return back()->with('message', 'Listing updated successfully !');
+     }
+
+     
 }

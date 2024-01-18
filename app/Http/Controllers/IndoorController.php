@@ -28,7 +28,7 @@ class IndoorController extends Controller
 
     //show edit form 
     public function edit(Indoor $indoors){
-        return view('indoor.edit', ['indoors'=>$indoors]);
+        return view('indoor.edit', ['indoors' => $indoors]);
     }
 
     // public function store(Request $request){
@@ -98,7 +98,7 @@ class IndoorController extends Controller
      
         $formFields['user_id'] = auth()->id();
      
-        $indoors->create($formFields);
+        $indoors->update($formFields);
      
         return back()->with('message', 'Listing updated successfully !');
      }

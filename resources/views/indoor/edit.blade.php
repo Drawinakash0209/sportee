@@ -16,7 +16,7 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
 
 <form  method="POST" action="/home/{{$indoors->id}}" enctype="multipart/form-data">
     @csrf
-    @method('put')
+    @method('PUT')
     
 
     <div class="mb-6">

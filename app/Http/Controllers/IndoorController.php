@@ -103,5 +103,11 @@ class IndoorController extends Controller
         return back()->with('message', 'Listing updated successfully !');
      }
 
+     //delete indoor\
+        public function destroy(Indoor $indoors){
+            $indoors->delete();
+            return redirect('/')->with('message', 'Listing deleted successfully !');
+        }
+
      
 }

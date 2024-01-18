@@ -37,6 +37,12 @@
     </div>
 
     <a href="/home/{{$indoors->id}}/edit" class="text-blue-500">Edit</a>
+
+
+    <form action="/home/{{$indoors->id}}" method="POST">
+      @csrf
+      @method('DELETE')
+      <button class="text-red-500">Delete</button>
     
     </section>
     @endsection

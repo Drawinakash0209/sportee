@@ -39,6 +39,7 @@ Route::get('home/{indoors}/edit', [IndoorController::class, 'edit']);
 //edit submit to update
 Route::put('/home/{indoors}', [IndoorController::class, 'update']);
 
+Route::delete('/home/{indoors}', [IndoorController::class, 'destroy']);
 
 //Register form
 Route::get('/register',[userController::class, 'create'])->middleware('guest');

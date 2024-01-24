@@ -12,8 +12,8 @@
 
     <table class="w-full table-auto rounded-sm">
         <tbody>
-            @unless ($indoors->isEmpty())
-            @foreach ($indoors as $indoor)
+            
+            @foreach ($users as $user)
                 
            
             <tr class="border-gray-300">
@@ -21,14 +21,23 @@
                     class="px-4 py-8 border-t border-b border-gray-300 text-lg"
                 >
                     <a href="show.html">
-                        {{$indoor->title}}
+                        {{$user->name}}
                     </a>
                 </td>
+
+              
+                    <td
+                        class="px-4 py-8 border-t border-b border-gray-300 text-lg"
+                    >
+                        <a href="show.html">
+                            {{$user->role_id->name}}
+                        </a>
+                    </td>
                 <td
                     class="px-4 py-8 border-t border-b border-gray-300 text-lg"
                 >
                     <a
-                        href="/home/{{$indoor->id}}/edit"
+                        href="/home/{{$user->id}}/edit"
                         class="text-blue-400 px-6 py-2 rounded-xl"
                         ><i
                             class="fa-solid fa-pen-to-square"
@@ -39,7 +48,7 @@
                 <td
                     class="px-4 py-8 border-t border-b border-gray-300 text-lg"
                 >
-                <form action="/home/{{$indoor->id}}" method="POST">
+                <form action="/home/{{$user->id}}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button class="text-red-500"><i
@@ -52,14 +61,8 @@
             </tr>
 
             @endforeach
-            @else
-            <tr class="border-grey-300">
-                <td class="px-4 py-8 border-t border-b border grey-300 text-lg">
-                    <p class="text-center">
-                        You have no Indoors yet.
-                </td>
-            </tr>
-            @endunless
+           
+           
 
         </tbody>
     </table>

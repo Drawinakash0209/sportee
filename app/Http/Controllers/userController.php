@@ -72,4 +72,14 @@ class userController extends Controller
 
         
     }
+
+    public function index(){
+        return view('users.dashboard',[
+            'users'=>User::all()
+        ]);
+
+    }
+
+
+
 }

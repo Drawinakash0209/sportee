@@ -32,6 +32,7 @@ Route::post('/home', [IndoorController::class, 'store'])->middleware('auth');
 
 //manage
 Route::get('/home/manage', [IndoorController::class, 'manage']); 
+Route::get('/home/dashboard', [userController::class, 'index']);
 
 Route::get('/home/{indoors}', [IndoorController::class, 'show']);
 
@@ -65,6 +66,9 @@ Route::post('/logout',[userController::class, 'logout'])->middleware('auth');
 Route::post('/users/authenticate',[userController::class, 'authenticate']);
 
 Route::post('/listings', 'ListingController@store')->middleware('auth'); //
+
+
+
 
 //manage
 

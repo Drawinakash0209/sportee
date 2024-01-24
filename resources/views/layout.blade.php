@@ -35,17 +35,25 @@
 
         <nav class="navbar">
             
+           
 
 
 
 
             
             @auth
+            
             <span class="text-white text-lg">
                 Welcome {{auth()->user()->name}} !
             </span>
             
             <a href="/home/manage" style="--i:1;" class=" text-lg">Manage</a>
+
+            @if(auth()->user()->role_id->value == 1)
+           <a href="/home/dashboard" style="--i:2;" class=" text-lg">Dashboard</a>
+           @endif
+
+            
 
             <form class="inline" method="POST" action="/logout">
               @csrf

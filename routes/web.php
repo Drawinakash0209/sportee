@@ -63,7 +63,27 @@ Route::get('/login',[userController::class, 'login'])->name('login')->middleware
 Route::post('/logout',[userController::class, 'logout'])->middleware('auth');
 
 
+
+//user update
+Route::put('/users/update/{users}',[userController::class, 'update']);
+
+
 Route::post('/users/authenticate',[userController::class, 'authenticate']);
+
+
+
+
+
+//user edit form
+Route::get('/user/{users}/edit',[userController::class, 'edit']);
+
+
+
+//user delete
+Route::delete('/user/{users}',[userController::class, 'destroy']);
+
+
+
 
 Route::post('/listings', 'ListingController@store')->middleware('auth'); //
 

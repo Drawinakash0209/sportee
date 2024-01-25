@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Enums\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -78,6 +80,28 @@ class userController extends Controller
             'users'=>User::all()
         ]);
 
+    }
+    public function destroy(User $users){
+        $users->delete();
+        return back()->with('message', 'User deleted succefully');
+    }
+
+    public function edit(User $users){
+        return view('users.edit',[
+            'users'=>$users,
+            'roles'=>Role::cases()
+        ]);
+    }
+
+    public function update(Request $request, User $users){
+        $formFields = $request->validate([
+            'name'=>['required'],
+            'email' =>['required', 'email'],
+            'role_id'=>['required', Rule::in(Role::cases())]
+        ]);
+
+        $users->update($formFields);
+        return redirect('/')->with('message', 'User updated succefully');
     }
 
 

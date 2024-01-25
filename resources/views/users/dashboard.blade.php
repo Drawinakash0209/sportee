@@ -30,14 +30,14 @@
                         class="px-4 py-8 border-t border-b border-gray-300 text-lg"
                     >
                         <a href="show.html">
-                            {{$user->role_id->name}}
+                            {{ucwords(Str_replace('_',' ', Str::snake($user->role_id->name)))}}
                         </a>
                     </td>
                 <td
                     class="px-4 py-8 border-t border-b border-gray-300 text-lg"
                 >
                     <a
-                        href="/home/{{$user->id}}/edit"
+                        href="/user/{{$user->id}}/edit"
                         class="text-blue-400 px-6 py-2 rounded-xl"
                         ><i
                             class="fa-solid fa-pen-to-square"
@@ -48,14 +48,14 @@
                 <td
                     class="px-4 py-8 border-t border-b border-gray-300 text-lg"
                 >
-                <form action="/home/{{$user->id}}" method="POST">
+                <form action="/user/{{$user->id}}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button class="text-red-500"><i
                         class="fa-solid fa-trash-can"
                     ></i>
                     Delete</button>
-                  
+                </form>
                   </section>
                 </td>
             </tr>

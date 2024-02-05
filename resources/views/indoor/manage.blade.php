@@ -1,19 +1,24 @@
 @extends('layout')
 @section('content')
 
-<div class="bg-gray-50 border border-gray-200 pl-10 pr-10 pb- 20 rounded mt-40">
-    <header>
-        <h1
-            class="text-3xl text-center font-bold my-6 uppercase"
-        >
-            Manage Your Indoors
-        </h1>
-    </header>
+
+<header class="flex justify-between items-center pl-10 pr-10 pb- 20 rounded mt-40">
+    <h1 class="text-3xl text-center font-bold my-6 uppercase">
+        Manage Your Indoors
+    </h1>
+
+    <a href="/home/create" class="mt-8  text-blue-400  text-base font-semibold py-2.5 px-6 border-2 border-white rounded hover:bg-white hover:text-black transition duration-300 ease-in-out">
+        <i class="fa-solid fa-plus"></i> Add Indoor
+    </a>
+</header>
+
 
     <table class="w-full table-auto rounded-sm">
         <tbody>
             @unless ($indoors->isEmpty())
             @foreach ($indoors as $indoor)
+
+
                 
            
             <tr class="border-gray-300">

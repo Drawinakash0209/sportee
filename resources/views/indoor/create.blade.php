@@ -284,7 +284,7 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
 
     <div class="mb-6">
         <label for="photo" class="inline-block text-lg mb-2">
-            Company Logo
+            Image
         </label>
         <input
             type="file"

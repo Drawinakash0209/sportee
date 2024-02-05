@@ -11,7 +11,7 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24 mb-
     <h2 class="text-2xl font-bold uppercase mb-1">
         User edit form
     </h2>
-    <p class="mb-4">Create an account to post your indoor facilities</p>
+    
 </header>
 
 <form method="POST" action="/users/update/{{$users->id}}">

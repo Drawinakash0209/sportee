@@ -56,7 +56,7 @@ Route::delete('/home/{indoors}', [IndoorController::class, 'destroy']);
 Route::get('/register',[userController::class, 'create'])->middleware('guest');
 
 Route::post('/users',[userController::class, 'store']);
-//
+//php storm
 
   //login form
 Route::get('/login',[userController::class, 'login'])->name('login')->middleware('guest');

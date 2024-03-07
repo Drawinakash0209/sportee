@@ -31,7 +31,7 @@ Route::get('/home/create', [IndoorController::class, 'create'])->middleware('aut
 Route::post('/home', [IndoorController::class, 'store'])->middleware('auth');
 
 //manage
-Route::get('/home/manage', [IndoorController::class, 'manage']); 
+Route::get('/home/manage', [IndoorController::class, 'manage']);
 
 
 Route::get('/home/dashboard', [userController::class, 'index']);
@@ -39,7 +39,7 @@ Route::get('/home/dashboard', [userController::class, 'index']);
 Route::get('/home/{indoors}', [IndoorController::class, 'show']);
 
 
-//edit form 
+//edit form
 Route::get('home/{indoors}/edit', [IndoorController::class, 'edit']);
 
 //edit submit to update
@@ -56,7 +56,7 @@ Route::delete('/home/{indoors}', [IndoorController::class, 'destroy']);
 Route::get('/register',[userController::class, 'create'])->middleware('guest');
 
 Route::post('/users',[userController::class, 'store']);
-
+//
 
   //login form
 Route::get('/login',[userController::class, 'login'])->name('login')->middleware('guest');

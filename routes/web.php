@@ -23,6 +23,8 @@ use App\Models\Tournament;
 // });
 
 
+
+
 Route::get('/', [IndoorController::class, 'index']);
 
 //create form
@@ -38,6 +40,22 @@ Route::get('/home/dashboard', [userController::class, 'index']);
 
 Route::get('/home/{indoors}', [IndoorController::class, 'show']);
 
+
+
+Route::prefix('admin')->group(function () {
+
+         Route::get('/dashboard', function (){
+             return view('dashboard-layout');
+         });
+
+         Route::put('/users/update/{users}',[userController::class, 'update']);
+
+         Route::get('/view-users',[userController::class, 'index']);
+
+         Route::get('/user/{users}/edit',[userController::class, 'edit']);
+
+
+});
 
 //edit form
 Route::get('home/{indoors}/edit', [IndoorController::class, 'edit']);
@@ -67,7 +85,7 @@ Route::post('/logout',[userController::class, 'logout'])->middleware('auth');
 
 
 //user update
-Route::put('/users/update/{users}',[userController::class, 'update']);
+//Route::put('/users/update/{users}',[userController::class, 'update']);
 
 
 Route::post('/users/authenticate',[userController::class, 'authenticate']);
@@ -77,7 +95,7 @@ Route::post('/users/authenticate',[userController::class, 'authenticate']);
 
 
 //user edit form
-Route::get('/user/{users}/edit',[userController::class, 'edit']);
+//Route::get('/user/{users}/edit',[userController::class, 'edit']);
 
 
 
@@ -85,7 +103,15 @@ Route::get('/user/{users}/edit',[userController::class, 'edit']);
 Route::delete('/user/{users}',[userController::class, 'destroy']);
 
 
+//Route::get('/test', function () {
+//    return view('test');
+//})->middleware(['role:SuperAdministrator'])->get;
 
+Route::middleware([
+    'role:SuperAdministrator',
+])->get('test', function (Request $request){
+   return view('test');
+});
 
 Route::post('/listings', 'ListingController@store')->middleware('auth'); //
 

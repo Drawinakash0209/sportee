@@ -14,7 +14,7 @@
     <script src="//unpkg.com/alpinejs" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
 
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
@@ -22,7 +22,7 @@
 
 <body>
 
-    <header class="head"> 
+    <header class="head">
         <a href="/" class="indoorLogo">SPORTEE</a>
 
 
@@ -31,30 +31,31 @@
         <label for="ch" class="icons">
             <i class='bx bx-menu' id="menu"></i>
             <i class='bx bx-x' id="cancel"></i>
-           
+
         </label>
 
         <nav class="navbar">
-            
-           
 
 
 
 
-            
+
+
+
             @auth
-            
+
             <span class="text-white text-lg">
                 Welcome {{auth()->user()->name}} !
             </span>
-            
+
             <a href="/home/manage" style="--i:1;" class=" text-lg">Manage</a>
 
             @if(auth()->user()->role_id->value == 1)
+{{--                    <a href="/admin/dashboard" style="--i:2;" class=" text-lg">Dashboard</a>--}}
            <a href="/home/dashboard" style="--i:2;" class=" text-lg">Dashboard</a>
            @endif
 
-            
+
 
             <form class="inline" method="POST" action="/logout">
               @csrf
@@ -80,7 +81,7 @@
    </main>
 
 
-   
+
 
     <footer>
         <div class="footer-content">
@@ -94,7 +95,7 @@
                 <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
             </ul>
         </div>
-    
+
         <div class="footer-bottom">
             <p>copyright &copy;2023 Sportee. designed by <span>Drawin</span></p>
         </div>

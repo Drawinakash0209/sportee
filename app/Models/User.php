@@ -43,7 +43,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
-        'role_id' => Role::class
+        'role_id' => Role::class,
+        'role' => Role::class,
     ];
 
     //RElationship

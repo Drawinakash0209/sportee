@@ -11,10 +11,10 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24 mb-
     <h2 class="text-2xl font-bold uppercase mb-1">
         User edit form
     </h2>
-    
+
 </header>
 
-<form method="POST" action="/users/update/{{$users->id}}">
+<form method="POST" action="/admin/users/update/{{$users->id}}">
     @csrf
     @method('PUT')
     <div class="mb-6">
@@ -28,7 +28,7 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24 mb-
         />
 
         @error('name')
-          <p class="text-red-500 text-xs mt-1">{{$message}}</p>  
+          <p class="text-red-500 text-xs mt-1">{{$message}}</p>
         @enderror
     </div>
 
@@ -43,14 +43,14 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24 mb-
         />
         <!-- Error Example -->
         @error('email')
-          <p class="text-red-500 text-xs mt-1">{{$message}}</p>  
+          <p class="text-red-500 text-xs mt-1">{{$message}}</p>
         @enderror
     </div>
 
 
 
 
-    
+
 
 
 
@@ -72,14 +72,14 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24 mb-
     </div>
 
     <div class="mb-6">
-        <button type="submit" 
+        <button type="submit"
             class="bg-red-500 text-white rounded py-2 px-4 hover:bg-black">
             Edit User Information
         </button>
 
         <a href="/" class="text-black ml-4"> Back </a>
     </div>
-   
+
 </form>
 </div>
 

@@ -34,7 +34,7 @@ class userController extends Controller
 
         return redirect('/')->with('message', 'User created and logged in');
 
-       
+
 
     }
 
@@ -42,7 +42,7 @@ class userController extends Controller
         return view('users.login');
     }
 
-    
+
 
     public function logout(Request $request){
         auth()->logout();
@@ -53,11 +53,11 @@ class userController extends Controller
 
     }
 
-    
+
 
     public function authenticate(Request $request){
         $formFields =$request->validate([
-           
+
             'email' =>['required', 'email'],
             'password' => 'required'
 
@@ -72,11 +72,15 @@ class userController extends Controller
 
         return back()->withErrors(['email'=> 'Invalid Credentials'])->onlyInput('email');
 
-        
+
     }
 
     public function index(){
-        return view('users.dashboard',[
+//        return view('users.dashboard',[
+//            'users'=>User::all()
+//        ]);
+
+        return view('users.view',[
             'users'=>User::all()
         ]);
 
@@ -101,7 +105,7 @@ class userController extends Controller
         ]);
 
         $users->update($formFields);
-        return redirect('/')->with('message', 'User updated succefully');
+        return redirect('/admin/view-users')->with('message', 'User updated succefully');
     }
 
 

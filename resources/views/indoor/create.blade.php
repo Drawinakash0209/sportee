@@ -41,7 +41,7 @@
             @enderror
             </div>
 
-            
+
             {{-- <div>
                 <label class="text-white dark:text-gray-200" for="contact_number">Contact Number</label>
                 <input id="contact_number" type="text" name="contact_number" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
@@ -49,7 +49,7 @@
                 <p>{{$message}}</p>
             @enderror
             </div>
-           
+
             <div>
                 <label class="text-white dark:text-gray-200" for="Price">Price per Hour</label>
                 <input id="price" type="text"name="price" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
@@ -57,7 +57,7 @@
                 <p>{{$message}}</p>
             @enderror
             </div> --}}
-         
+
             {{-- <div>
                 <label class="text-white dark:text-gray-200" for="description">Description</label>
                 <textarea id="description" type="textarea"  name=" description" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"></textarea>
@@ -98,7 +98,7 @@
 
  {{-- <section class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800 mt-20">
     <h2 class="text-lg font-semibold text-gray-700 capitalize dark:text-white">Account settings</h2>
-    
+
     <form>
         <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
             <div>
@@ -128,8 +128,8 @@
     </form>
 </section> --}}
 
-{{-- 
-@endsection --}} 
+{{--
+@endsection --}}
 
 
 
@@ -151,7 +151,7 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
 
 <form  method="POST" action="/home" enctype="multipart/form-data">
     @csrf
-    
+
 
     <div class="mb-6">
         <label for="title" class="inline-block text-lg mb-2"
@@ -165,8 +165,8 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
         />
         @error('title')
         <p class="text-red-500 text-xs mt-1"> {{$message}}</p>
-    
-            
+
+
         @enderror
     </div>
 
@@ -184,8 +184,8 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
         />
         @error('location')
         <p class="text-red-500 text-xs mt-1"> {{$message}}</p>
-    
-            
+
+
         @enderror
     </div>
 
@@ -201,8 +201,8 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
 
         @error('email')
         <p class="text-red-500 text-xs mt-1"> {{$message}}</p>
-    
-            
+
+
         @enderror
     </div>
 
@@ -221,8 +221,8 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
 
         @error('website')
         <p class="text-red-500 text-xs mt-1"> {{$message}}</p>
-    
-            
+
+
         @enderror
     </div>
 
@@ -239,8 +239,8 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
 
         @error('tags')
         <p class="text-red-500 text-xs mt-1"> {{$message}}</p>
-    
-            
+
+
         @enderror
     </div>
 
@@ -257,13 +257,13 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
 
         @error('contact_number')
         <p class="text-red-500 text-xs mt-1"> {{$message}}</p>
-    
-            
+
+
         @enderror
     </div>
 
 
-    
+
     <div class="mb-6">
         <label for="contact_number" class="inline-block text-lg mb-2">
             Price per Hour
@@ -277,8 +277,8 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
 
         @error('price')
         <p class="text-red-500 text-xs mt-1"> {{$message}}</p>
-    
-            
+
+
         @enderror
     </div>
 
@@ -291,12 +291,34 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
             class="border border-gray-200 rounded p-2 w-full"
             name="photo"
         />
-        
+
         @error('photo')
         <p class="text-red-500 text-xs mt-1"> {{$message}}</p>
-    
-            
+
+
         @enderror
+    </div>
+
+
+    <div>
+        <label for="photo" class="inline-block text-lg mb-2">
+            Gallery
+        </label>
+
+        <input
+            type="file"
+            class="border border-gray-200 rounded p-2 w-full"
+            name="gallery[]"
+            multiple
+            id="multgaller"
+        />
+
+        @error('gallery[]')
+        <p class="text-red-500 text-xs mt-1"> {{$message}}</p>
+
+
+        @enderror
+
     </div>
 
     <div class="mb-6">
@@ -315,13 +337,13 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
 
         @error('description')
         <p class="text-red-500 text-xs mt-1"> {{$message}}</p>
-    
-            
+
+
         @enderror
     </div>
 
     <div class="mb-6">
-        <button type="submit" 
+        <button type="submit"
             class="bg-red-500 text-white rounded py-2 px-4 hover:bg-black">
             Create Indoor
         </button>

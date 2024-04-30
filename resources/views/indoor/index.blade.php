@@ -2,8 +2,8 @@
 @section('content')
 @include('partials._hero')
 
-   
-{{-- 
+
+{{--
 Feature indoors section --}}
  <section class="mb-12 ">
     <h1 class="mb-12 text-center font-Bebas Neue text-5xl font-bold wrappermain">Featured Indoors</h1>
@@ -30,19 +30,21 @@ Feature indoors section --}}
 
 
 <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-12">
-    <div class="text-center pb-12">
-        <h1 class="mb-6 text-center font-Bebas Neue text-5xl font-bold wrappermain"> Upcoming Events</h1>
-      
-        
-    </div>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div class="text-center">
+        <h1 class="mb-2 text-center font-Bebas Neue text-5xl font-bold wrappermain"> Upcoming Events</h1>
 
+
+    </div>
+    <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
+        <div class="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2 gap-5">
 @foreach($tournaments as $tourn)
 
 <x-tournaments-cards :tourn="$tourn"/>
 @endforeach
 
-</div>
+        </div>
+    </div>
+
 </section>
 
 
@@ -59,30 +61,30 @@ Feature indoors section --}}
                 <i class="fa-solid fa-hands-clapping"></i>
                 <h2>No more chasing payments</h2>
                 <p>Automatic, secure online payments, straight into your Indoor Facilities bank account.</p>
-    
+
             </div>
-    
+
             <div class="card">
                 <i class="fa-regular fa-clock"></i>
                 <h2>Available 24/7, on any device</h2>
                 <p>Smart scheduling and calendar overview, to save you time.</p>
-                
+
             </div>
-    
+
             <div class="card">
                 <i class="fa-regular fa-credit-card"></i>
                 <h2>Want more bookings and less admin?</h2>
                 <p>Bring your facility booking online, to 1,000s of users who can book instantly.</p>
-                
+
             </div>
         </div>
         </div>
-    
-    
+
+
     </div>
 
 
-               
+
 
 
 
@@ -125,7 +127,7 @@ Feature indoors section --}}
                         </a>
                     </div>
                 </li>
-                
+
 
 
                 <li class="text-sm leading-6">
@@ -146,7 +148,7 @@ Feature indoors section --}}
                 </li>
 
 
-               
+
                 <li class="text-sm leading-6">
                     <div class="relative group">
                         <div  class="absolute transition rounded-lg opacity-25 -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 blur duration-400 group-hover:opacity-100 group-hover:duration-200">
@@ -164,7 +166,7 @@ Feature indoors section --}}
                     </div>
                 </li>
 
-                
+
                 <li class="text-sm leading-6">
                     <div class="relative group">
                         <div  class="absolute transition rounded-lg opacity-25 -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 blur duration-400 group-hover:opacity-100 group-hover:duration-200">
@@ -184,7 +186,7 @@ Feature indoors section --}}
 
             </ul>
 
-           
+
             <ul class="hidden space-y-8 sm:block">
                 <li class="text-sm leading-6">
                     <div class="relative group">
@@ -214,7 +216,7 @@ Feature indoors section --}}
                             <h3 class="text-lg font-semibold text-white"> Booking History Tracking:</h3>
                         </div>
                     </div>
-                    <p class="leading-normal text-gray-300 text-md">               
+                    <p class="leading-normal text-gray-300 text-md">
                         Keep a comprehensive record with booking history tracking. Our system logs all reservations, modifications, and cancellations, providing a detailed history that can be useful for analysis, reporting, and ensuring accountability.</p>
                 </div>
             </a>
@@ -310,8 +312,8 @@ Feature indoors section --}}
             </a>
         </div>
     </li>
-                
- 
+
+
             </ul>
 
 
@@ -329,7 +331,7 @@ Feature indoors section --}}
 {{-- Our partners section  --}}
 
 <section class=" relative bg-white sm:py-10 lg:py-16 lg:pt-10">
-   
+
 
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 text-center  ">
         <div class="max-w-2xl mx-auto text-center">
@@ -371,8 +373,8 @@ Feature indoors section --}}
                 <img class="object-contain w-full h-8 mx-auto" src="https://cdn.rareblocks.xyz/collection/celebration/images/logos/3/logo-11.png" alt="">
             </div>
 
-            
-        </div> 
+
+        </div>
 
         <div class="flex items-center justify-center mt-10 space-x-3 md:hidden">
             <div class="w-2.5 h-2.5 rounded-full bg-blue-600 block"></div>
@@ -380,12 +382,12 @@ Feature indoors section --}}
             <div class="w-2.5 h-2.5 rounded-full bg-gray-300 block"></div>
         </div>
 
-      
+
     </div>
 </section>
-    
 
-    
 
-    
+
+
+
 @endsection

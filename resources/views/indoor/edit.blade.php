@@ -17,7 +17,7 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
 <form  method="POST" action="/home/{{$indoors->id}}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
-    
+
 
     <div class="mb-6">
         <label for="title" class="inline-block text-lg mb-2"
@@ -32,8 +32,8 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
         />
         @error('title')
         <p class="text-red-500 text-xs mt-1"> {{$message}}</p>
-    
-            
+
+
         @enderror
     </div>
 
@@ -52,8 +52,8 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
         />
         @error('location')
         <p class="text-red-500 text-xs mt-1"> {{$message}}</p>
-    
-            
+
+
         @enderror
     </div>
 
@@ -70,8 +70,8 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
 
         @error('email')
         <p class="text-red-500 text-xs mt-1"> {{$message}}</p>
-    
-            
+
+
         @enderror
     </div>
 
@@ -91,8 +91,8 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
 
         @error('website')
         <p class="text-red-500 text-xs mt-1"> {{$message}}</p>
-    
-            
+
+
         @enderror
     </div>
 
@@ -110,8 +110,8 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
 
         @error('tags')
         <p class="text-red-500 text-xs mt-1"> {{$message}}</p>
-    
-            
+
+
         @enderror
     </div>
 
@@ -129,13 +129,13 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
 
         @error('contact_number')
         <p class="text-red-500 text-xs mt-1"> {{$message}}</p>
-    
-            
+
+
         @enderror
     </div>
 
 
-    
+
     <div class="mb-6">
         <label for="contact_number" class="inline-block text-lg mb-2">
             Price per Hour
@@ -150,8 +150,8 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
 
         @error('price')
         <p class="text-red-500 text-xs mt-1"> {{$message}}</p>
-    
-            
+
+
         @enderror
     </div>
 
@@ -164,12 +164,33 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
             class="border border-gray-200 rounded p-2 w-full"
             name="photo"
         />
-        
+
         @error('photo')
         <p class="text-red-500 text-xs mt-1"> {{$message}}</p>
-    
-            
+
+
         @enderror
+    </div>
+
+    <div>
+        <label for="photo" class="inline-block text-lg mb-2">
+            Gallery
+        </label>
+
+        <input
+            type="file"
+            class="border border-gray-200 rounded p-2 w-full"
+            name="gallery[]"
+            multiple
+            id="multgaller"
+        />
+
+        @error('gallery[]')
+        <p class="text-red-500 text-xs mt-1"> {{$message}}</p>
+
+
+        @enderror
+
     </div>
 
     <div class="mb-6">
@@ -179,7 +200,7 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
         >
             Job Description
         </label>
-     
+
             <textarea
                 class="border border-gray-200 rounded p-2 w-full"
                 name="description"
@@ -190,13 +211,13 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
 
         @error('description')
         <p class="text-red-500 text-xs mt-1"> {{$message}}</p>
-    
-            
+
+
         @enderror
     </div>
 
     <div class="mb-6">
-        <button type="submit" 
+        <button type="submit"
             class="bg-red-500 text-white rounded py-2 px-4 hover:bg-black">
             Edit Indoor
         </button>

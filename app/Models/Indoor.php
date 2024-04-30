@@ -9,7 +9,7 @@ class Indoor extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'tags', 'location', 'email', 'website', 'description','contact_number', 'price','user_id','photo'];
+    protected $fillable = ['title', 'tags', 'location', 'email', 'website', 'description','contact_number', 'price','user_id','photo', 'gallery'];
 
 
     public function scopeFilters($query, array $filter){
@@ -27,5 +27,9 @@ class Indoor extends Model
     // relationship
     public function user(){
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public  function comments(){
+        return $this->hasMany(Comment::class, 'indoor_id', 'id');
     }
 }

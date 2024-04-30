@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Models\Indoor;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\IndoorController;
 use App\Http\Controllers\TournamentController;
+use App\Livewire\PostComments;
+use Livewire\Component;
 use App\Models\Tournament;
 
 /*
@@ -53,9 +56,9 @@ Route::prefix('admin')->group(function () {
          Route::get('/view-users',[userController::class, 'index']);
 
          Route::get('/user/{users}/edit',[userController::class, 'edit']);
-
-
 });
+
+Route::post('comments', [CommentController::class, 'store']);
 
 //edit form
 Route::get('home/{indoors}/edit', [IndoorController::class, 'edit']);
@@ -117,7 +120,9 @@ Route::post('/listings', 'ListingController@store')->middleware('auth'); //
 
 
 
+Route::get('/tournament/create', [TournamentController::class, 'create']);
 
+Route::post('/tournament', [TournamentController::class, 'store']);
 //manage
 
 

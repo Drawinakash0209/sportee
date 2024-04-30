@@ -13,14 +13,25 @@
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <script src="//unpkg.com/alpinejs" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <link rel="dns-prefetch" href="//unpkg.com" />
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
+    <livewire:styles />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
+<style>
+    [x-cloak] {
+        display: none;
+    }
+</style>
 
 
 <body>
+
+    
 
     <header class="head">
         <a href="/" class="indoorLogo">SPORTEE</a>
@@ -35,6 +46,7 @@
         </label>
 
         <nav class="navbar">
+
 
 
 
@@ -89,7 +101,7 @@
             <p>Discover the essence of sports excellence with Sportee – your ultimate destination for dynamic athletic experiences. From state-of-the-art facilities to community-driven events, Sportee is committed to fostering a passion for sports. Join us in celebrating the spirit of competition, camaraderie, and achievement. Your journey to a vibrant sports community begins here.</p>
             <ul class="socials">
                 <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa-brands fa-x-twitter"></i></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
                 <li><a href="#"><i class="fa-brands fa-google-plus"></i></a></li>
                 <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
                 <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
@@ -102,6 +114,7 @@
     </footer>
 
     <x-message />
+    @livewireScripts
 
 </body>
 

@@ -51,4 +51,13 @@ class User extends Authenticatable
     public function indoors(){
         return $this->hasMany(Indoor::class, 'user_id');
     }
+
+    public function comments(){
+        return $this->hasMany(Comment::class, 'user_id');
+    }
+
+    public function tournaments(){
+        return $this->hasMany(Tournament::class, 'user_id');
+    }
 }
+

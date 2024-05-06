@@ -7,18 +7,20 @@
 
 @section('content')
 
+
     <div
         class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
     >
         <header class="text-center">
             <h2 class="text-2xl font-bold uppercase mb-1">
-                Create a Indoor
+                Edit an Event
             </h2>
             <p class="mb-4">Post a Tournament to find participants</p>
         </header>
 
-        <form  method="POST" action="/tournament" enctype="multipart/form-data">
+        <form  method="POST" action="/tournament/{{$tournaments->id}}" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
 
 
             <div class="mb-6">
@@ -30,6 +32,7 @@
                     class="border border-gray-200 rounded p-2 w-full"
                     name="title"
                     placeholder="Example: RCL tournament"
+                    value="{{$tournaments->title}}"
                 />
                 @error('title')
                 <p class="text-red-500 text-xs mt-1"> {{$message}}</p>
@@ -45,6 +48,7 @@
                     class="border border-gray-200 rounded p-2 w-full"
                     name="tournamentDate"
                     placeholder="Select Date"
+                    value="{{$tournaments->tournamentDate}}"
                 />
 
                 @error('date')
@@ -64,6 +68,7 @@
                     type="text"
                     class="border border-gray-200 rounded p-2 w-full"
                     name="noOFplayers"
+                    value="{{$tournaments->noOFplayers}}"
                 />
 
                 @error('noOFplayers')
@@ -83,6 +88,7 @@
                     class="border border-gray-200 rounded p-2 w-full"
                     name="contact_number"
                     placeholder="Example: 011*******"
+                    value="{{$tournaments->contact_number}}"
                 />
 
                 @error('contact_number')
@@ -103,6 +109,7 @@
                     class="border border-gray-200 rounded p-2 w-full"
                     name="entry_fee"
                     placeholder="Example: Laravel, Backend, Postgres, etc"
+                    value="{{$tournaments->entry_fee}}"
                 />
 
                 @error('entry_fee')
@@ -143,7 +150,8 @@
                     name="description"
                     rows="10"
                     placeholder="Include sports, indoor sepacialities, price, etc"
-                ></textarea>
+                >{{$tournaments->description}}
+                </textarea>
 
                 @error('description')
                 <p class="text-red-500 text-xs mt-1"> {{$message}}</p>

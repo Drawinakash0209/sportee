@@ -15,6 +15,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="dns-prefetch" href="//unpkg.com" />
     <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction/main.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid/main.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid/main.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css">
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
     <livewire:styles />
@@ -31,7 +36,7 @@
 
 <body>
 
-    
+
 
     <header class="head">
         <a href="/" class="indoorLogo">SPORTEE</a>
@@ -116,6 +121,9 @@
     <x-message />
     @livewireScripts
 
+
+
+    @stack('scripts')
 </body>
 
 

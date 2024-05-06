@@ -122,7 +122,17 @@ Route::post('/listings', 'ListingController@store')->middleware('auth'); //
 
 Route::get('/tournament/create', [TournamentController::class, 'create']);
 
+Route::get('/tournament/manage', [TournamentController::class, 'manage']);
+
+//Tournament Edit form
+Route::get('/tournament/{tournaments}/edit', [TournamentController::class, 'edit']);
+
+//Tournament update
+Route::put('/tournament/{tournaments}', [TournamentController::class, 'update']);
+
 Route::post('/tournament', [TournamentController::class, 'store']);
+
+Route::delete('/tournament/{tournaments}/delete', [TournamentController::class, 'destroy']);
 //manage
 
 

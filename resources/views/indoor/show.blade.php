@@ -4,6 +4,7 @@
 @section('content')
 
 
+
     <style>
         [x-cloak] {
             display: none;
@@ -32,7 +33,7 @@
             </div>
         </div>
         <!-- Jumbotron -->
-    </section>
+
     <!-- Section: Design Block -->
 
 
@@ -164,71 +165,175 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mt-10" style="margin-left: 20px; margin-right: 20px;"> <!-- Adjust margin values as needed -->
+            <div id="calendar"></div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="min-h-screen p-6 flex items-center justify-center">
+        <div class="container max-w-screen-lg mx-auto">
+            <div>
+                <h2 class="font-semibold text-xl text-gray-600">Book time slots</h2>
+                <p class="text-gray-500 mb-6">Form is mobile responsive. Give it a try.</p>
+
+                <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
+                    <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
+                        <div class="text-gray-600">
+                            <p class="font-medium text-lg">Personal Details</p>
+                            <p>Please fill out all the fields.</p>
+                        </div>
+
+                        <div class="lg:col-span-2">
+                            <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+                                <div class="md:col-span-5">
+                                    <label for="full_name">Full Name</label>
+                                    <input type="text" name="full_name" id="full_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
+                                </div>
+
+                                <div class="md:col-span-5">
+                                    <label for="email">Email Address</label>
+                                    <input type="text" name="email" id="email" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="email@domain.com" />
+                                </div>
+
+                                <div class="md:col-span-3">
+                                    <label for="address">Address / Street</label>
+                                    <input type="text" name="address" id="address" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
+                                </div>
+
+                                <div class="md:col-span-2">
+                                    <label for="city">City</label>
+                                    <input type="text" name="city" id="city" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
+                                </div>
+
+
+
+
+
+                                <div class="md:col-span-1">
+                                    <label for="zipcode">Zipcode</label>
+                                    <input type="text" name="zipcode" id="zipcode" class="transition-all flex items-center h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="" value="" />
+                                </div>
+
+                                <div class="md:col-span-5">
+                                    <div class="inline-flex items-center">
+                                        <input type="checkbox" name="billing_same" id="billing_same" class="form-checkbox" />
+                                        <label for="billing_same" class="ml-2">My billing address is different than above.</label>
+                                    </div>
+                                </div>
+
+                                <div class="md:col-span-2">
+                                    <label for="soda">How many soda pops?</label>
+                                    <div class="h-10 w-28 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
+                                        <button tabindex="-1" for="show_more" class="cursor-pointer outline-none focus:outline-none border-r border-gray-200 transition-all text-gray-500 hover:text-blue-600">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mx-2" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                            </svg>
+                                        </button>
+                                        <input name="soda" id="soda" placeholder="0" class="px-2 text-center appearance-none outline-none text-gray-800 w-full bg-transparent" value="0" />
+                                        <button tabindex="-1" for="show_more" class="cursor-pointer outline-none focus:outline-none border-l border-gray-200 transition-all text-gray-500 hover:text-blue-600">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mx-2 fill-current" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="md:col-span-5 text-right">
+                                    <div class="inline-flex items-end">
+                                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
     @include('partials._comments')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    {{--    <section class="w-screen my-40 ">--}}
-
-{{--    <div class="m-4 mx-auto max-w-screen-lg rounded-md border border-gray-100 text-gray-600 shadow-md">--}}
-{{--      <div class="relative flex h-full flex-col text-gray-600 md:flex-row">--}}
-{{--        <div class="relative p-8 md:w-4/6">--}}
-{{--            <p class="text-md font-medium text-indigo-500"><i class="fa-solid fa-location-dot"></i> {{$indoors['location']}}</p>--}}
-{{--          <div class="flex flex-col md:flex-row">--}}
-
-{{--            <h2 class="mb-2 text-2xl font-black">{{$indoors->title}}</h2>--}}
-{{--          </div>--}}
-{{--          <p class="mt-3 font-sans text-base tracking-normal">{{$indoors->description}}</p>--}}
-{{--          <div class="flex flex-col md:flex-row md:items-end">--}}
-{{--            <p class="mt-6 text-2xl font-black">Rs.{{$indoors->price}}<sup class="align-super text-sm">Per hour</sup></p>--}}
-
-{{--          </div>--}}
-{{--          <p class="text-md mt-3 font-medium text-indigo-400"><i class="fa-solid fa-phone"></i> {{$indoors['contact_number']}}</p>--}}
-
-{{--          <div class="mt-4 flex flex-col sm:flex-row">--}}
-{{--            <button class="mr-2 mb-4 flex cursor-pointer items-center justify-center rounded-md bg-emerald-400 py-2 px-8 text-center text-white transition duration-150 ease-in-out hover:translate-y-1 hover:bg-emerald-500">--}}
-{{--              <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">--}}
-{{--                <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />--}}
-{{--              </svg>--}}
-{{--              Book a slot--}}
-{{--            </button>--}}
-
-{{--          </div>--}}
-{{--        </div>--}}
-{{--        <div class="mx-auto flex items-center px-5 pt-1 md:p-8">--}}
-{{--          <img class="block h-auto max-w-full rounded-md shadow-lg" src="{{$indoors->photo ? asset('storage/' . $indoors->photo): asset('/images/CR7.png')}}" alt="Shop image" />--}}
-{{--        </div>--}}
-{{--      </div>--}}
-{{--    </div>--}}
     @props(['item'])
 
 
 
 
+    @push('scripts')
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+        <script>
+
+            document.addEventListener('DOMContentLoaded', function () {
+                var calendarEl = document.getElementById('calendar');
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'timeGridWeek',
+                    selectable: true,
+                    slotMinTime: '8:00:00',
+                    slotMaxTime: '24:00:00',
+                    // Uncomment and adjust the events property if you have a list of events to load
+                    {{--// events: @json($events),--}}
+                });
+
+                // Example of adding a single event
+                calendar.addEvent({
+                    title: 'New Event',
+                    start: '2024-05-06T09:00:00',
+                    end: '2024-05-06T10:00:00'
+                });
+
+                calendar.render();
+            });
+        </script>
+    @endpush
 
     @endsection
 

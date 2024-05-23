@@ -206,12 +206,23 @@
 
 
 
-
-
-
     <div class="min-h-screen p-6 flex items-center justify-center">
+
         <div class="container max-w-screen-lg mx-auto">
+            <form  method="POST" action="/home/{{$indoors['id']}}/book" enctype="multipart/form-data">
+                @csrf
             <div>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <input type="hidden" name="indoor_id" value="{{$indoors->id}}">
                 <h2 class="font-semibold text-xl text-gray-600">Book time slots</h2>
                 <p class="text-gray-500 mb-6">Form is mobile responsive. Give it a try.</p>
 
@@ -226,56 +237,35 @@
                             <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                                 <div class="md:col-span-5">
                                     <label for="full_name">Full Name</label>
-                                    <input type="text" name="full_name" id="full_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
+                                    <input type="text" name="full_name" id="full_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{auth()->user()->name}}" />
                                 </div>
 
                                 <div class="md:col-span-5">
                                     <label for="email">Email Address</label>
-                                    <input type="text" name="email" id="email" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="email@domain.com" />
-                                </div>
-
-                                <div class="md:col-span-3">
-                                    <label for="address">Address / Street</label>
-                                    <input type="text" name="address" id="address" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
-                                </div>
-
-                                <div class="md:col-span-2">
-                                    <label for="city">City</label>
-                                    <input type="text" name="city" id="city" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
-                                </div>
-
-
-
-
-
-                                <div class="md:col-span-1">
-                                    <label for="zipcode">Zipcode</label>
-                                    <input type="text" name="zipcode" id="zipcode" class="transition-all flex items-center h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="" value="" />
+                                    <input type="text" name="email" id="email" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{auth()->user()->email}}" placeholder="email@domain.com" />
                                 </div>
 
                                 <div class="md:col-span-5">
-                                    <div class="inline-flex items-center">
-                                        <input type="checkbox" name="billing_same" id="billing_same" class="form-checkbox" />
-                                        <label for="billing_same" class="ml-2">My billing address is different than above.</label>
-                                    </div>
+                                    <label for="phone">Phone Number</label>
+                                    <input type="text" name="phone" id="phone" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
                                 </div>
 
-                                <div class="md:col-span-2">
-                                    <label for="soda">How many soda pops?</label>
-                                    <div class="h-10 w-28 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
-                                        <button tabindex="-1" for="show_more" class="cursor-pointer outline-none focus:outline-none border-r border-gray-200 transition-all text-gray-500 hover:text-blue-600">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mx-2" viewBox="0 0 20 20" fill="currentColor">
-                                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                            </svg>
-                                        </button>
-                                        <input name="soda" id="soda" placeholder="0" class="px-2 text-center appearance-none outline-none text-gray-800 w-full bg-transparent" value="0" />
-                                        <button tabindex="-1" for="show_more" class="cursor-pointer outline-none focus:outline-none border-l border-gray-200 transition-all text-gray-500 hover:text-blue-600">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mx-2 fill-current" viewBox="0 0 20 20" fill="currentColor">
-                                                <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
-                                            </svg>
-                                        </button>
-                                    </div>
+                                <div class="md:col-span-5">
+                                    <label for="booking_date">Booking Date</label>
+                                    <input type="date" name="booking_date" id="booking_date" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
                                 </div>
+
+                                <div class="md:col-span-5">
+                                    <label for="start_time">Start Time</label>
+                                    <input type="datetime-local" name="start_time" id="start_time" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+                                </div>
+
+                                <div class="md:col-span-5">
+                                    <label for="finish_time">End Time</label>
+                                    <input type="datetime-local" name="finish_time" id="finish_time" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+                                </div>
+
+                                <!-- Add more fields as needed -->
 
                                 <div class="md:col-span-5 text-right">
                                     <div class="inline-flex items-end">
@@ -288,9 +278,9 @@
                     </div>
                 </div>
             </div>
-
-
+            </form>
         </div>
+
     </div>
 
 
@@ -318,17 +308,19 @@
                     initialView: 'timeGridWeek',
                     selectable: true,
                     slotMinTime: '8:00:00',
-                    slotMaxTime: '24:00:00',
+                    slotMaxTime: '23:59:59',
                     // Uncomment and adjust the events property if you have a list of events to load
-                    {{--// events: @json($events),--}}
+                    events: @json($events),
+
+
                 });
 
                 // Example of adding a single event
-                calendar.addEvent({
-                    title: 'New Event',
-                    start: '2024-05-06T09:00:00',
-                    end: '2024-05-06T10:00:00'
-                });
+                // calendar.addEvent({
+                //     title: 'New Event',
+                //     start: '2024-05-06T09:00:00',
+                //     end: '2024-05-06T10:00:00'
+                // });
 
                 calendar.render();
             });

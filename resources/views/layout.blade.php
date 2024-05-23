@@ -65,7 +65,15 @@
                 Welcome {{auth()->user()->name}} !
             </span>
 
-            <a href="/home/manage" style="--i:1;" class=" text-lg">Manage</a>
+            @if(auth()->user()->role_id->value != 5)
+                    <a href="/home/manage" style="--i:1;" class=" text-lg">Manage</a>
+            @endif
+
+                @if(auth()->user()->role_id->value == 5)
+                    <a href="/customer/history" style="--i:1;" class=" text-lg">History</a>
+                @endif
+
+
 
             @if(auth()->user()->role_id->value == 1)
 {{--                    <a href="/admin/dashboard" style="--i:2;" class=" text-lg">Dashboard</a>--}}

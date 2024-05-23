@@ -15,6 +15,39 @@ class userController extends Controller
 
     }
 
+    public function history()
+    {
+        $user = auth()->user(); // Get the currently authenticated user
+        $bookings = $user->bookings()->orderBy('created_at', 'desc')->get(); // Get the user's bookings
+
+        return view('client-history.history-index', compact('bookings'));
+
+    }
+
+    public function cust()
+    {
+        return view('users.customer-register');
+
+    }
+
+    //function to store customer credentials
+    public function custStore(Request $request) {
+
+        $formFields = $request->validate([
+            'name' => ['required', 'min:3'],
+            'email' => ['required', 'email', Rule::unique('users', 'email')],
+            'password' => 'required|confirmed|min:6',
+        ]);
+
+        $formFields['password'] = bcrypt($formFields['password']);
+        $formFields['role_id'] = '5'; // Set role to User (code 2)
+
+        $user = User::create($formFields);
+        auth()->login($user);
+
+        return redirect('/')->with('message', 'User created and logged in');
+    }
+
 
     public function store(Request $request){
 

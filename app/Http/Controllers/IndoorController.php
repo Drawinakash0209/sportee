@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
+use App\Models\Booking;
 use App\Models\Indoor;
 use App\Models\Tournament;
 use Illuminate\Http\Request;
 
 class IndoorController extends Controller
 {
+
     public function index(){
         return view('indoor.index', [
             'indoors'=>Indoor::latest()->filters(request(['tag','search']))->get(),
@@ -17,14 +20,66 @@ class IndoorController extends Controller
     }
 
 
+    public function book(Request $request){
+
+
+
+        $formFields = $request->validate([
+            'start_time' => 'required|date_format:Y-m-d\TH:i',
+            'finish_time' => 'required|date_format:Y-m-d\TH:i',
+        ]);
+        $formFields['indoor_id'] = $request->input('indoor_id');
+        $formFields['comments'] = "Booked";
+        $formFields['user_id'] = auth()->id();
+
+
+        Booking::create($formFields);
+
+        return redirect('/')->with('message', 'Booking created successfully !');
+
+    }
+
+    public function getEvents()
+    {
+       $events = [];
+
+       $bookings = Booking::all();
+
+       foreach ($bookings as $booking){
+           $events[]= [
+               'title' => 'Booked',
+               'start' => $booking->start_time,
+               'end' => $booking->finish_time,
+           ];
+       }
+
+       return response()->json($events);
+    }
+
+
 
 // show individual Indoors
     public function show(Indoor $indoors){
         $gallery = explode('|', $indoors->gallery);
+
+        $events = [];
+
+//        $bookings = Booking::all();
+        $bookings = Booking::where('indoor_id', $indoors->id)->get();
+
+        foreach ($bookings as $booking){
+            $events[]= [
+                'title' => 'Booked',
+                'start' => $booking->start_time,
+                'end' => $booking->finish_time,
+
+            ];
+        }
+
         return view('indoor.show', [
             'indoors'=> $indoors,
             'gallery'=>$gallery,
-
+            'events'=>$events
 
         ]);
     }

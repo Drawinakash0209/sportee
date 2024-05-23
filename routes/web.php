@@ -71,6 +71,19 @@ Route::put('/home/{indoors}', [IndoorController::class, 'update']);
 Route::delete('/home/{indoors}', [IndoorController::class, 'destroy']);
 
 
+//form for booking
+Route::post('/home/{indoors}/book', [IndoorController::class, 'book']);
+
+Route::get('/events', [IndoorController::class, 'getEvents'])->name('events');
+
+
+
+//Register form for customers
+Route::get('/register/customer',[userController::class, 'cust'])->middleware('guest');
+
+//store customer credentials
+Route::post('/customer',[userController::class, 'custStore']);
+
 
 
 //Register form
@@ -135,9 +148,9 @@ Route::post('/tournament', [TournamentController::class, 'store']);
 Route::delete('/tournament/{tournaments}/delete', [TournamentController::class, 'destroy']);
 //manage
 
+//Route to display customer history page
+Route::get('/customer/history', [userController::class, 'history']);
 
-
-// Route::get('/',[TournamentController::class, 'index']);
 
 // common resourse routes
 

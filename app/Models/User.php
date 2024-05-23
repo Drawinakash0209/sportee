@@ -59,5 +59,9 @@ class User extends Authenticatable
     public function tournaments(){
         return $this->hasMany(Tournament::class, 'user_id');
     }
+
+    public function bookings(){
+        return $this->hasMany(Booking::class, 'user_id');
+    }
 }
 

@@ -7,6 +7,8 @@ enum Role : int{
     case moderator = 3;
     case MarketingManager = 4;
 
+    case  Customer = 5;
+
     /**
      * @param int $value
      * @return self|null
@@ -20,6 +22,7 @@ enum Role : int{
             2 => self::User,
             3 => self::moderator,
             4 => self::MarketingManager,
+            5 => self::Customer,
             default => null,
 
 
@@ -40,6 +43,7 @@ enum Role : int{
             'User'=> self::User,
             'moderator'=>self::moderator,
             'MarketingManager' => self::MarketingManager,
+            'Customer' => self::Customer,
              default => null,
 
         };

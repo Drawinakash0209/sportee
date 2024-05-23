@@ -32,4 +32,8 @@ class Indoor extends Model
     public  function comments(){
         return $this->hasMany(Comment::class, 'indoor_id', 'id');
     }
+
+    public function bookings(){
+        return $this->hasMany(Booking::class, 'indoor_id', 'id');
+    }
 }

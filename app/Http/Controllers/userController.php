@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\Role;
 use App\Models\User;
+use App\SystemMessageNotification;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -72,6 +73,8 @@ class userController extends Controller
     }
 
     public function login(){
+
+
         return view('users.login');
     }
 
@@ -98,10 +101,14 @@ class userController extends Controller
 
         if(auth()->attempt($formFields)){
             $request ->session()->regenerate();
+
+
             return redirect('/')->with('message', 'you are logged in');
 
 
         }
+
+
 
         return back()->withErrors(['email'=> 'Invalid Credentials'])->onlyInput('email');
 

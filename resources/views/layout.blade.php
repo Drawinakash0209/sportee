@@ -73,6 +73,12 @@
                     <a href="/customer/history" style="--i:1;" class=" text-lg">History</a>
                 @endif
 
+            @if(auth())
+
+                <a href="/notifications"  style="--i:1;" class=" text-lg">Notifications</a>
+
+                @endif
+
 
 
             @if(auth()->user()->role_id->value == 1)
@@ -97,6 +103,43 @@
         </nav>
 
     </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

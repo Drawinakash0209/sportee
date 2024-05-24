@@ -6,7 +6,11 @@ use Illuminate\Notifications\Notification;
 
 class SystemMessageNotification extends Notification
 {
-    public function __construct()
+    public function __construct(
+        public string $message,
+        public ?string $link,
+        public string $icon,
+        public string $type)
     {
     }
 
@@ -17,12 +21,31 @@ class SystemMessageNotification extends Notification
 
     public function toDatabase($notifiable): array
     {
-        return [
-            'message' => 'System message',
-            'link' => 'http://example.com',
-            'icon' => 'fa fa-bell',
-            'type' => 'system_message',
-        ];
+        if($this->type === 'system_message'){
+            return [
+                'message' => $this->message,
+                'link' => $this->link,
+                'icon' => $this->link,
+                'type' => $this->link,
+            ];
+
+        }
+
+        if($this->type === 'success'){
+            return [
+                'message' => $this->message,
+                'link' => $this->link,
+                'icon' => $this->link,
+                'type' => $this->link,
+            ];
+
+        }
+
+        return '';
+
+
+
+
     }
 
     public function toArray($notifiable): array

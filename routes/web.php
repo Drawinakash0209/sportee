@@ -152,7 +152,7 @@ Route::delete('/tournament/{tournaments}/delete', [TournamentController::class, 
 Route::get('/customer/history', [userController::class, 'history']);
 
 Route::get("/notifications", function(Request $request){
-    (new \App\Models\User())->first()->notify(new \App\SystemMessageNotification());
+
     return view('notification');
 });
 

@@ -166,6 +166,12 @@ class userController extends Controller
         return redirect('/admin/view-users')->with('message', 'User updated succefully');
     }
 
+    public function clientDashboard(){
+        return view('user-dashboard-layout', [
+            'indoors'=>auth()->user()->indoors
+        ]);
+    }
+
 
 
 }

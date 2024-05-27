@@ -25,8 +25,6 @@ class IndoorController extends Controller
 
     public function book(Request $request){
 
-
-
         $formFields = $request->validate([
             'start_time' => 'required|date_format:Y-m-d\TH:i',
             'finish_time' => 'required|date_format:Y-m-d\TH:i',
@@ -100,6 +98,49 @@ class IndoorController extends Controller
             'events'=>$events
 
         ]);
+    }
+
+    public function ClientShow(Indoor $indoors){
+        $events = [];
+        $bookings = Booking::where('indoor_id', $indoors->id)->get();
+
+        //total booking in this indoor
+        $totalBooking = Booking::where('indoor_id', $indoors->id)->count();
+
+        //total booking in this week
+        $totalBookingThisWeek = Booking::where('indoor_id', $indoors->id)->whereBetween('start_time', [now()->startOfWeek(), now()->endOfWeek()])->count();
+
+        //total booking in this month
+        $totalBookingThisMonth = Booking::where('indoor_id', $indoors->id)->whereBetween('start_time', [now()->startOfMonth(), now()->endOfMonth()])->count();
+
+        //total booking today
+        $totalBookingToday = Booking::where('indoor_id', $indoors->id)->whereDate('start_time', now())->count();
+
+        foreach ($bookings as $booking){
+            $events[]= [
+                'title' => 'Booked',
+                'start' => $booking->start_time,
+                'end' => $booking->finish_time,
+
+            ];
+        }
+        $place = Indoor::find($indoors->id);
+        $indoors = Indoor::all();
+
+
+
+        return view('indoor.client-show', [
+            'indoors'=> $indoors,
+            'bookings'=>$bookings,
+            'place'=>$place,
+            'events'=>$events,
+            'totalBooking'=>$totalBooking,
+            'totalBookingThisWeek'=>$totalBookingThisWeek,
+            'totalBookingThisMonth'=>$totalBookingThisMonth,
+            'totalBookingToday'=>$totalBookingToday
+
+        ]);
+
     }
 
     public function create(){
@@ -243,6 +284,8 @@ class IndoorController extends Controller
                 'indoors'=>auth()->user()->indoors
              ]);
         }
+
+
 
 
         // public function manage(){

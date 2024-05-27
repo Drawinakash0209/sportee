@@ -30,6 +30,8 @@ use App\Models\Tournament;
 
 Route::get('/', [IndoorController::class, 'index']);
 
+
+
 //create form
 Route::get('/home/create', [IndoorController::class, 'create'])->middleware('auth');
 
@@ -158,6 +160,7 @@ Route::get("/notifications", function(Request $request){
     return view('notification');
 });
 
+Route::get('/clients/{indoors}', [IndoorController::class, 'ClientShow']);
 
 // common resourse routes
 

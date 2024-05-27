@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 
 use App\Enums\Role;
+use App\Models\Booking;
+use App\Models\Indoor;
+use App\Models\Tournament;
 use App\Models\User;
 use App\SystemMessageNotification;
 use Illuminate\Http\Request;
@@ -14,6 +17,21 @@ class userController extends Controller
     public function create(){
         return view('users.register');
 
+    }
+
+    public function analysis()
+    {
+
+        //Dashboard analysis
+        $totalIndoors = Indoor::count();// Get the total number of indoors
+        $totalUsers = User::where('role_id', 2)->count();
+        $totalCustomers = User::where('role_id', 5)->count();// Get the total number of users
+        $totalbookings = Booking::count();// Get the total number of bookings
+        $totalTournaments = Tournament::count();// Get the total number of tournaments
+        $todayBookings = Booking::whereDate('created_at', today())->count();// Get the total number of bookings made today
+        $monthlyBookings = Booking::whereMonth('created_at', today())->count();// Get the total number of bookings made this month
+
+        return view('admin.analysis', compact('totalIndoors', 'totalUsers', 'totalCustomers', 'totalbookings', 'totalTournaments', 'todayBookings', 'monthlyBookings'));
     }
 
     public function history()

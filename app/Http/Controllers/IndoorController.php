@@ -55,6 +55,39 @@ class IndoorController extends Controller
 
     }
 
+    //client booking
+    public function clientBook(Request $request){
+        $formFields = $request->validate([
+            'start_time' => 'required|date_format:Y-m-d\TH:i',
+            'finish_time' => 'required|date_format:Y-m-d\TH:i',
+        ]);
+        $formFields['indoor_id'] = $request->input('indoor_id');
+        $formFields['comments'] = "Booked";
+        $formFields['user_id'] = auth()->id();
+
+
+        Booking::create($formFields);
+
+        //notify booking details to users who created indoor TABLE FOREIGN KEY
+        $indoorowner = Indoor::find($formFields['indoor_id'])->user;
+
+        $indoorowner->notify(new SystemMessageNotification(
+            'Someone has booked your indoor! from '.$formFields['start_time'].' to '.$formFields['finish_time'] . 'on '.date('Y-m-d H:i:s'),
+            'success',
+            'Success',
+            'success'));
+
+
+        (new User())->find(auth()->id())->notify(new SystemMessageNotification(
+            'Booking created successfully !',
+            'success',
+            'Success',
+            'success'));
+
+        return redirect('/')->with('message', 'Booking created successfully !');
+
+    }
+
     public function getEvents()
     {
        $events = [];
@@ -125,7 +158,10 @@ class IndoorController extends Controller
             ];
         }
         $place = Indoor::find($indoors->id);
-        $indoors = Indoor::all();
+
+        //find the indoor of the online user
+        $indoors = Indoor::where('user_id', auth()->id())->get();
+//        $indoors = Indoor::all();
 
 
 

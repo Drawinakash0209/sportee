@@ -65,7 +65,7 @@
                 Welcome {{auth()->user()->name}} !
             </span>
 
-            @if(auth()->user()->role_id->value != 5)
+            @if(auth()->user()->role_id->value == 2)
                     <a href="/home/manage" style="--i:1;" class=" text-lg">Manage</a>
             @endif
 

@@ -72,6 +72,86 @@
         </div>
 
 
+        <div class="min-h-screen p-6 flex items-center justify-center mt-20">
+
+            <div class="container max-w-screen-lg mx-auto">
+                <form  method="POST" action="/client/{{$place['id']}}/book" enctype="multipart/form-data">
+                    @csrf
+                    <div>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+                        <input type="hidden" name="indoor_id" value="{{$place->id}}">
+                        <h2 class="font-semibold text-xl text-gray-600">Book time slots</h2>
+                        <p class="text-gray-500 mb-6">Form is mobile responsive. Give it a try.</p>
+
+                        <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
+                            <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
+                                <div class="text-gray-600">
+                                    <p class="font-medium text-lg">Details of the Customer</p>
+                                    <p>Please fill out all the fields.</p>
+                                </div>
+
+                                <div class="lg:col-span-2">
+                                    <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+                                        <div class="md:col-span-5">
+                                            <label for="full_name">Full Name</label>
+                                            <input type="text" name="full_name" id="full_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
+                                        </div>
+
+                                        <div class="md:col-span-5">
+                                            <label for="email">Email Address</label>
+                                            <input type="text" name="email" id="email" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="email@domain.com" />
+                                        </div>
+
+                                        <div class="md:col-span-5">
+                                            <label for="phone">Phone Number</label>
+                                            <input type="text" name="phone" id="phone" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
+                                        </div>
+
+                                        <div class="md:col-span-5">
+                                            <label for="booking_date">Booking Date</label>
+                                            <input type="date" name="booking_date" id="booking_date" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+                                        </div>
+
+                                        <div class="md:col-span-5">
+                                            <label for="start_time">Start Time</label>
+                                            <input type="datetime-local" name="start_time" id="start_time" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+                                        </div>
+
+                                        <div class="md:col-span-5">
+                                            <label for="finish_time">End Time</label>
+                                            <input type="datetime-local" name="finish_time" id="finish_time" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+                                        </div>
+
+                                        <!-- Add more fields as needed -->
+
+                                        <div class="md:col-span-5 text-right">
+                                            <div class="inline-flex items-end">
+                                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+
+
+
+
 
 
 

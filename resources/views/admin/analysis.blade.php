@@ -65,6 +65,7 @@
             </div>
 
             <div class="col-md-3">
+            <div class="col-md-3">
                 <div class="card card-body bg-success text-white mb-3">
                     <label for="">Month Bookings </label>
                     <h1> {{ $monthlyBookings }}</h1>

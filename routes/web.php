@@ -82,6 +82,10 @@ Route::get('/events', [IndoorController::class, 'getEvents'])->name('events');
 
 
 
+//book from client dashboard
+Route::post('/client/{indoors}/book', [IndoorController::class, 'clientBook']);
+
+
 //Register form for customers
 Route::get('/register/customer',[userController::class, 'cust'])->middleware('guest');
 

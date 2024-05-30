@@ -1,11 +1,9 @@
 
+
+
+{{--@extends('layout')--}}
+{{--@section('content')--}}
 <script src="https://cdn.tailwindcss.com"></script>
-@section('content')
-
-
-
-
-
 
 
     <section class="container mx-auto p-6 font-mono">
@@ -45,3 +43,6 @@
             </div>
         </div>
     </section>
+
+{{--@endsection--}}
+

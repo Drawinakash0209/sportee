@@ -4,6 +4,8 @@
 
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <section class="container mx-auto p-6 font-mono">
         <header class="flex justify-between items-center mb-6">
             <h1 class="text-3xl text-center font-bold uppercase">
@@ -63,6 +65,57 @@
 
 
             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="card mb-4">
+
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-chart-bar me-1"></i>
+                        Bar Chart Example
+                    </div>
+                    <div class="card-body"><canvas id="myBarChart" width="100%" height="50"></canvas></div>
+                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
@@ -154,7 +207,7 @@
 
 
 
-
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
         @push('scripts')
@@ -188,6 +241,20 @@
 
 
     </section>
+
+    <script type="text/javascript">
+        var _ydata = JSON.parse('{!! json_encode($months) !!}');
+        var _xdata = JSON.parse('{!! json_encode($monthCount) !!}');
+    </script>
+
+    <script src="{{asset('assets/js/chart-bar-demo.js')}}" ></script>
+    <script src="{{asset('assets/js/chart-area-demo.js')}}" ></script>
+
+
+
+
+
+
 
 @endsection
 

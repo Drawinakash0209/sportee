@@ -14,9 +14,22 @@ use Illuminate\Validation\Rule;
 
 class userController extends Controller
 {
+
     public function create(){
         return view('users.register');
 
+    }
+
+    public function clientAnalysis(){
+
+        // Get the currently authenticated user's indoor bookings using the foreign key from bookings table
+        $bookins = Booking::where('user_id', auth()->id())->get();
+
+
+
+        $indoors = Indoor::where('user_id', auth()->id())->get();
+        return view('indoor.client-analysis-dashboard',
+            compact('indoors'));
     }
 
     public function analysis()

@@ -10,6 +10,7 @@ use App\Models\User;
 use App\SystemMessageNotification;
 use Illuminate\Http\Request;
 use function Livewire\Volt\on;
+use Carbon\Carbon;
 
 class IndoorController extends Controller
 {
@@ -149,6 +150,19 @@ class IndoorController extends Controller
         //total booking today
         $totalBookingToday = Booking::where('indoor_id', $indoors->id)->whereDate('start_time', now())->count();
 
+        //get all bookings and group by date and count
+        $bookingAnalysis = Booking::select('id', 'start_time' ) ->where('indoor_id', $indoors->id)->get()->groupBy(function($date) {
+            return \Carbon\Carbon::parse($date->start_time)->format('M');
+        });
+
+        $months = [];
+        $monthCount = [];
+        foreach ($bookingAnalysis as $month => $values){
+            $months[] = $month;
+            $monthCount[] = count($values);
+
+        }
+
         foreach ($bookings as $booking){
             $events[]= [
                 'title' => 'Booked',
@@ -173,7 +187,10 @@ class IndoorController extends Controller
             'totalBooking'=>$totalBooking,
             'totalBookingThisWeek'=>$totalBookingThisWeek,
             'totalBookingThisMonth'=>$totalBookingThisMonth,
-            'totalBookingToday'=>$totalBookingToday
+            'totalBookingToday'=>$totalBookingToday,
+            'bookingAnalysis'=>$bookingAnalysis,
+            'months'=>$months,
+            'monthCount'=>$monthCount
 
         ]);
 

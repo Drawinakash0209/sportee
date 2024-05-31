@@ -166,6 +166,8 @@ Route::get("/notifications", function(Request $request){
 
 Route::get('/clients/{indoors}', [IndoorController::class, 'ClientShow']);
 
+Route::get('/client-dashboard', [userController::class, 'clientAnalysis']);
+
 // common resourse routes
 
 // index - show all listings

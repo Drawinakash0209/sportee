@@ -205,6 +205,7 @@
     </div>
 
 
+    @auth
 
     <div class="min-h-screen p-6 flex items-center justify-center">
 
@@ -213,7 +214,7 @@
                 @csrf
             <div>
                 @if ($errors->any())
-                    <div class="alert alert-danger">
+                    <div class="alert alert-danger text-red-500">
                         <ul>
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
@@ -237,7 +238,7 @@
                             <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                                 <div class="md:col-span-5">
                                     <label for="full_name">Full Name</label>
-                                    <input type="text" name="full_name" id="full_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{auth()->user()->name}}" />
+                                    <input type="text" name="custName" id="full_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{auth()->user()->name}}" />
                                 </div>
 
                                 <div class="md:col-span-5">
@@ -247,7 +248,7 @@
 
                                 <div class="md:col-span-5">
                                     <label for="phone">Phone Number</label>
-                                    <input type="text" name="phone" id="phone" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
+                                    <input type="text" name="phoneNumber" id="phone" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
                                 </div>
 
                                 <div class="md:col-span-5">
@@ -282,6 +283,12 @@
         </div>
 
     </div>
+
+    @else
+        <div class=" mt-20 text-center">
+            <p class="text-lg font-medium text-gray-600">Please <a href="{{ route('login') }}" class="text-blue-500 hover:text-blue-700">login</a> to book.</p>
+        </div>
+    @endauth
 
 
 

@@ -14,7 +14,7 @@
             </div>
 
             <main class="p-5 z-10">
-                <a href="#"
+                <a href="/home/tournament/{{$tourn['id']}}"
                    class="text-md tracking-tight font-medium leading-7 font-regular text-white hover:underline">{{$tourn['title']}}
                 </a>
                 <br>

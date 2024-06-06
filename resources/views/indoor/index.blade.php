@@ -33,7 +33,6 @@ Feature indoors section --}}
     <div class="text-center">
         <h1 class="mb-2 text-center font-Bebas Neue text-5xl font-bold wrappermain"> Upcoming Events</h1>
 
-
     </div>
     <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
         <div class="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2 gap-5">

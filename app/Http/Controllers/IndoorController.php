@@ -25,69 +25,158 @@ class IndoorController extends Controller
 
 
     public function book(Request $request){
-
+        // Validate form fields
         $formFields = $request->validate([
             'start_time' => 'required|date_format:Y-m-d\TH:i',
             'finish_time' => 'required|date_format:Y-m-d\TH:i',
+            'phoneNumber' => 'required|numeric|digits:10',
+            'custName' => 'required|string|max:255',
         ]);
-        $formFields['indoor_id'] = $request->input('indoor_id');
+
+        // Check for overlapping bookings
+        $indoorId = $request->input('indoor_id');
+        $startTime = $request->input('start_time');
+        $finishTime = $request->input('finish_time');
+
+        $overlappingBooking = Booking::where('indoor_id', $indoorId)
+            ->where(function($query) use ($startTime, $finishTime) {
+                $query->whereBetween('start_time', [$startTime, $finishTime])
+                    ->orWhereBetween('finish_time', [$startTime, $finishTime])
+                    ->orWhere(function($query) use ($startTime, $finishTime) {
+                        $query->where('start_time', '<=', $startTime)
+                            ->where('finish_time', '>=', $finishTime);
+                    });
+            })
+            ->exists();
+
+        if ($overlappingBooking) {
+            return redirect()->back()->withErrors(['message' => 'The selected time slot is already booked. Please choose a different time.']);
+        }
+
+        // Prepare the data for booking
+        $formFields['indoor_id'] = $indoorId;
         $formFields['comments'] = "Booked";
         $formFields['user_id'] = auth()->id();
 
-
+        // Create the booking
         Booking::create($formFields);
 
-        //notify booking details to users who created indoor TABLE FOREIGN KEY
+        // Notify the indoor owner
         $indoorowner = Indoor::find($formFields['indoor_id'])->user;
         $indoorowner->notify(new SystemMessageNotification(
             'Someone has booked your indoor! from '.$formFields['start_time'].' to '.$formFields['finish_time'] . 'on '.date('Y-m-d H:i:s'),
             'success',
             'Success',
-            'success'));
+            'success'
+        ));
 
-
+        // Notify the user
         (new User())->find(auth()->id())->notify(new SystemMessageNotification(
-            'Booking created successfully !',
+            'Booking created successfully!',
             'success',
             'Success',
-            'success'));
+            'success'
+        ));
 
-        return redirect('/')->with('message', 'Booking created successfully !');
-
+        // Redirect with a success message
+        return redirect('/')->with('message', 'Booking created successfully!');
     }
+
 
     //client booking
     public function clientBook(Request $request){
+        // Validate form fields
         $formFields = $request->validate([
             'start_time' => 'required|date_format:Y-m-d\TH:i',
             'finish_time' => 'required|date_format:Y-m-d\TH:i',
+            'phoneNumber' => 'required|numeric|digits:10',
+            'custName' => 'required|string|max:255',
         ]);
-        $formFields['indoor_id'] = $request->input('indoor_id');
+
+        // Check for overlapping bookings
+        $indoorId = $request->input('indoor_id');
+        $startTime = $request->input('start_time');
+        $finishTime = $request->input('finish_time');
+
+        $overlappingBooking = Booking::where('indoor_id', $indoorId)
+            ->where(function($query) use ($startTime, $finishTime) {
+                $query->whereBetween('start_time', [$startTime, $finishTime])
+                    ->orWhereBetween('finish_time', [$startTime, $finishTime])
+                    ->orWhere(function($query) use ($startTime, $finishTime) {
+                        $query->where('start_time', '<=', $startTime)
+                            ->where('finish_time', '>=', $finishTime);
+                    });
+            })
+            ->exists();
+
+        if ($overlappingBooking) {
+            return redirect()->back()->withErrors(['message' => 'The selected time slot is already booked. Please choose a different time.']);
+        }
+
+        // Prepare the data for booking
+        $formFields['indoor_id'] = $indoorId;
         $formFields['comments'] = "Booked";
         $formFields['user_id'] = auth()->id();
 
-
+        // Create the booking
         Booking::create($formFields);
 
-        //notify booking details to users who created indoor TABLE FOREIGN KEY
+        // Notify the indoor owner
         $indoorowner = Indoor::find($formFields['indoor_id'])->user;
-
         $indoorowner->notify(new SystemMessageNotification(
-            'Someone has booked your indoor! from '.$formFields['start_time'].' to '.$formFields['finish_time'] . 'on '.date('Y-m-d H:i:s'),
+            'Someone has booked your indoor! from '.$formFields['start_time'].' to '.$formFields['finish_time'] . ' on '.date('Y-m-d H:i:s'),
             'success',
             'Success',
-            'success'));
+            'success'
+        ));
 
-
+        // Notify the user
         (new User())->find(auth()->id())->notify(new SystemMessageNotification(
-            'Booking created successfully !',
+            'Booking created successfully!',
             'success',
             'Success',
-            'success'));
+            'success'
+        ));
 
-        return redirect('/')->with('message', 'Booking created successfully !');
-
+        // Redirect with a success message
+        return redirect('/')->with('message', 'Booking created successfully!');
     }
+
+
+    public function cancel($id)
+    {
+        $booking = Booking::find($id);
+
+        $booking->delete();
+
+
+
+
+        $indoor = Indoor::find($booking->indoor_id);
+        if ($indoor) {
+            $indoorOwner = $indoor->user;
+            if ($indoorOwner) {
+                $indoorOwner->notify(new SystemMessageNotification(
+                    'Someone has cancelled the booking from ' . $booking->start_time . ' to ' . $booking->finish_time . ' on ' . now()->format('Y-m-d H:i:s'),
+                    'danger',
+                    'Cancelled',
+                    'danger'
+                ));
+            }
+        }
+
+        auth()->user()->notify(new SystemMessageNotification(
+            'Booking cancelled successfully!',
+            'danger',
+            'Cancelled',
+            'danger'
+        ));
+
+
+
+        return back()->with('message', 'Booking cancelled successfully!');
+    }
+
 
     public function getEvents()
     {

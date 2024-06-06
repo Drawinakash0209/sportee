@@ -41,6 +41,16 @@ class SystemMessageNotification extends Notification
 
         }
 
+        if($this->type === 'danger'){
+            return [
+                'message' => $this->message,
+                'link' => $this->link,
+                'icon' => $this->link,
+                'type' => $this->link,
+            ];
+
+        }
+
         return '';
 
 

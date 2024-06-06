@@ -1,13 +1,13 @@
 
 
 
-{{--@extends('layout')--}}
-{{--@section('content')--}}
+@extends('layout')
+@section('content')
 <script src="https://cdn.tailwindcss.com"></script>
 
 
-    <section class="container mx-auto p-6 font-mono">
-        <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
+
+        <div class="mt-40  ml-10 mr-10 mb-8 overflow-hidden rounded-lg shadow-lg">
             <div class="w-full overflow-x-auto">
                 <table class="w-full">
                     <thead>
@@ -16,12 +16,19 @@
                         <th class="px-4 py-3">Start Time</th>
                         <th class="px-4 py-3">Finish Time</th>
                         <th class="px-4 py-3">Comments</th>
+                        <th class="px-4 py-3"> Cancel </th>
 
                         <!-- Add more columns as needed -->
                     </tr>
                     </thead>
                     <tbody class="bg-white">
                     @forelse ($bookings as $booking)
+
+                        @php
+                            $currentTime = now();
+                            $startTime = \Carbon\Carbon::parse($booking->start_time);
+                            $canCancel = $currentTime->diffInHours($startTime, false) >= 5;
+                        @endphp
 
                         <tr class="text-gray-700">
                             <td class="px-4 py-3 border">{{$booking->indoor->title}}</td>
@@ -30,6 +37,16 @@
                             <td class="px-4 py-3 border text-xs">
                                 <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> {{ $booking->comments }} </span>
                             </td>
+                            <td class="px-4 py-3 border">
+                                @if ($canCancel)
+                                    <form action="{{ route('cancel-booking', $booking->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="px-4 py-2 font-semibold text-white bg-red-500 rounded hover:bg-red-700">Cancel</button>
+                                    </form>
+                                @endif
+                            </td>
+
+
 
                             <!-- Add more columns as needed -->
                         </tr>
@@ -42,7 +59,7 @@
                 </table>
             </div>
         </div>
-    </section>
 
-{{--@endsection--}}
+
+@endsection
 

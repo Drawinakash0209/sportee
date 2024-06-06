@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class tournamentController extends Controller
 {
+
+    public function show(Tournament $tournaments)
+    {
+        // $tournaments already contains the instance of Tournament due to Route-Model Binding
+        return view('tournament.show', [
+            'tournament' => $tournaments,
+        ]);
+    }
     public function create()
     {
         return view('tournament.create');
@@ -16,7 +24,8 @@ class tournamentController extends Controller
     public function manage()
     {
         return view('tournament.manage',
-            ['tournaments' => auth()->user()->tournaments]);
+            ['tournaments' => auth()->user()->tournaments,
+                'indoors'=>auth()->user()->indoors]);
     }
 
     public function edit(Tournament $tournaments)
@@ -76,14 +85,11 @@ public function update(Request $request, Tournament $tournaments)
     return redirect('/')->with('message', 'Tournament Updated successfully!');
 }
 
-public function destroy(Tournament $tournaments)
-{
-    if (auth()->user()->id !== $tournaments->user_id){
-        abort(403, 'Unauthorized action');
+    public function destroy(Tournament $tournament)
+    {
+        $tournament->delete();
+        return redirect('/')->with('message', 'Tournament Deleted successfully!');
     }
-    $tournaments->delete();
-    return redirect('/')->with('message', 'Tournament Deleted successfully!');
-}
 
 
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\NewsletterController;
 use App\Models\Indoor;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
@@ -78,6 +79,9 @@ Route::delete('/home/{indoors}', [IndoorController::class, 'destroy']);
 //form for booking
 Route::post('/home/{indoors}/book', [IndoorController::class, 'book']);
 
+Route::post('/cancel-booking/{id}', [IndoorController::class, 'cancel'])->name('cancel-booking');
+
+
 Route::get('/events', [IndoorController::class, 'getEvents'])->name('events');
 
 
@@ -153,7 +157,10 @@ Route::put('/tournament/{tournaments}', [TournamentController::class, 'update'])
 
 Route::post('/tournament', [TournamentController::class, 'store']);
 
-Route::delete('/tournament/{tournaments}/delete', [TournamentController::class, 'destroy']);
+Route::delete('/tournament/{tournament}', [TournamentController::class, 'destroy'])->name('tournament.destroy');
+
+
+Route::get('/home/tournament/{tournaments}', [TournamentController::class, 'show']);
 //manage
 
 //Route to display customer history page
@@ -167,6 +174,9 @@ Route::get("/notifications", function(Request $request){
 Route::get('/clients/{indoors}', [IndoorController::class, 'ClientShow']);
 
 Route::get('/client-dashboard', [userController::class, 'clientAnalysis']);
+
+
+Route::post('/subscribe', [NewsletterController::class, 'subscribe']);
 
 // common resourse routes
 

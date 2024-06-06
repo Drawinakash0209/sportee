@@ -3,6 +3,7 @@
 
 
 
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -102,6 +103,94 @@
 
 
 
+        <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
+            <div class="w-full overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                    <tr class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
+                        <th class="px-4 py-3">Date</th>
+                        <th class="px-4 py-3">Start and End time</th>
+                        <th class="px-4 py-3">Duration</th>
+                        <th class="px-4 py-3">Customer</th>
+                        <th class="px-4 py-3">Phone Number</th>
+                        <th class="px-4 py-3">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                    @unless ($bookings->isEmpty())
+                        @foreach ($bookings as $booking)
+
+                            <tr class="text-gray-700">
+                                <td class="px-4 py-3 border">
+                                    {{
+       \Carbon\Carbon::parse($booking->start_time)->isToday() ? 'Today' :
+       (\Carbon\Carbon::parse($booking->start_time)->isTomorrow() ? 'Tomorrow' :
+       \Carbon\Carbon::parse($booking->start_time)->format('d-m-y'))
+   }}
+                                </td>
+
+                                <td class="px-4 py-3 border">
+
+                                        {{ \Carbon\Carbon::parse($booking->start_time)->format('H:i') }}
+                                      -
+                                        {{ \Carbon\Carbon::parse($booking->finish_time)->format('H:i') }}
+
+                                </td>
+
+                                <td class="px-4 py-3 border">
+                                    {{ \Carbon\Carbon::parse($booking->start_time)->diffInHours($booking->finish_time) }}
+                                    hours
+                                </td>
+
+                                <td class="px-4 py-3 border">
+                                    {{ $booking->custName }}
+                                </td>
+
+                                <td class="px-4 py-3 border">
+                                    {{ $booking->phoneNumber }}
+                                </td>
+
+                                <td class="px-4 py-3 border">
+                                    <div class="flex space-x-4">
+
+                                        <form action="{{ route('cancel-booking', $booking->id) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="text-red-500 px-3 py-2 rounded hover:bg-red-100">
+                                                <i class="fa-solid fa-trash-can"></i> Delete
+                                            </button>
+                                        </form>
+
+
+
+
+
+                                {{--                                <td class="px-4 py-3 border">--}}
+{{--                                    <div class="flex space-x-4">--}}
+{{--                                        <a href="/home/{{$indoor->id}}/edit" class="text-blue-400 px-3 py-2 rounded hover:bg-blue-100">--}}
+{{--                                            <i class="fa-solid fa-pen-to-square"></i> Edit--}}
+{{--                                        </a>--}}
+{{--                                        <form action="/home/{{$indoor->id}}" method="POST">--}}
+{{--                                            @csrf--}}
+{{--                                            @method('DELETE')--}}
+{{--                                            <button class="text-red-500 px-3 py-2 rounded hover:bg-red-100">--}}
+{{--                                                <i class="fa-solid fa-trash-can"></i> Delete--}}
+{{--                                            </button>--}}
+{{--                                        </form>--}}
+{{--                                    </div>--}}
+{{--                                </td>--}}
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="2" class="px-4 py-3 border text-center">You have no Indoors yet.</td>
+                        </tr>
+                    @endunless
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
 
 
 
@@ -156,7 +245,7 @@
                                     <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                                         <div class="md:col-span-5">
                                             <label for="full_name">Full Name</label>
-                                            <input type="text" name="full_name" id="full_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
+                                            <input type="text" name="custName" id="full_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
                                         </div>
 
                                         <div class="md:col-span-5">
@@ -166,7 +255,7 @@
 
                                         <div class="md:col-span-5">
                                             <label for="phone">Phone Number</label>
-                                            <input type="text" name="phone" id="phone" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
+                                            <input type="text" name="phoneNumber" id="phone" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
                                         </div>
 
                                         <div class="md:col-span-5">

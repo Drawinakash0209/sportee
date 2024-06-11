@@ -6,19 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Dashboard - SB Admin</title>
+    <title>Dashboard - Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="{{asset('assets/css/styles.css')}}" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-wqY8fwjyJLzXKsdwkLNJoKjMqxJyqygRXfnOjFyvWCMYPWzYrEMCW2uxxpONvwBGywzvQCZKsWdQx0xnrlzqsZA=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 
 <body>
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
     <!-- Navbar Brand-->
-    <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
+    <a class="navbar-brand ps-3" href="index.html">DASHBOARD</a>
     <!-- Sidebar Toggle-->
     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
     <!-- Navbar Search-->
@@ -55,28 +59,43 @@
 
 
                     <!-- Categories Dropdown -->
-                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                    <a class="nav-link collapsed" href="/admin/view-users" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                         Users
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
-                    <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                        <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="{{url('admin/view-users')}}">View Category</a>
-                        </nav>
-                    </div>
 
 
 
-                    <div class="sb-sidenav-menu-heading">Addons</div>
-                    <a class="nav-link" href="charts.html">
-                        <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                        Charts
-                    </a>
-                    <a class="nav-link" href="tables.html">
-                        <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                        Tables
-                    </a>
+                    <div class="sb-sidenav-menu-heading">Indoors</div>
+
+                    @unless ($allIndoors->isEmpty())
+                        <div class="mt-2 relative z-10">
+                            <ul class="mt-2 mx-auto max-w-xs text-left font-small text-sm leading-none border-blue-200 divide-y divide-blue-200">
+                        @foreach ($allIndoors as $allIndoor)
+                                    <li>
+                                        <a href="/admin/indoors/{{$allIndoor['id']}}" class="mb-4 py-3.5 w-full flex items-center text-blue-500 hover:text-blue-700 hover:bg-blue-50">
+                                            <span class="ml-5 mr-2.5 w-1 h-7 bg-blue-500 rounded-r-md"></span>
+                                            {{$allIndoor->title}}
+                                        </a>
+                                    </li>
+                        @endforeach
+                            </ul>
+
+                        </div>
+                    @else
+                            <a class="py-3.5 w-full flex items-center text-blue-500 hover:text-blue-700 hover:bg-blue-50" href="#">
+                                <span class="ml-5 mr-2.5 w-1 h-7 bg-blue-500 rounded-r-md"></span>
+                               You have no Indoors yet.
+                            </a>
+
+                    @endunless
+
+
+
+
+
+
                 </div>
             </div>
             <div class="sb-sidenav-footer">

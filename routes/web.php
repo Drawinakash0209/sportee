@@ -61,6 +61,8 @@ Route::prefix('admin')->group(function () {
          Route::get('/user/{users}/edit',[userController::class, 'edit']);
 
          Route::get('/analysis', [userController::class, 'analysis']);
+
+         Route::get('/indoors/{indoors}', [IndoorController::class, 'adminShow']);
 });
 
 Route::post('comments', [CommentController::class, 'store']);

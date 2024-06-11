@@ -225,7 +225,7 @@
 
                 <input type="hidden" name="indoor_id" value="{{$indoors->id}}">
                 <h2 class="font-semibold text-xl text-gray-600">Book time slots</h2>
-                <p class="text-gray-500 mb-6">Form is mobile responsive. Give it a try.</p>
+                <p class="text-gray-500 mb-6"></p>
 
                 <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
                     <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
@@ -321,14 +321,6 @@
 
 
                 });
-
-                // Example of adding a single event
-                // calendar.addEvent({
-                //     title: 'New Event',
-                //     start: '2024-05-06T09:00:00',
-                //     end: '2024-05-06T10:00:00'
-                // });
-
                 calendar.render();
             });
         </script>

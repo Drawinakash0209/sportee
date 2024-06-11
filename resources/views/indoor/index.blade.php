@@ -383,6 +383,32 @@ Feature indoors section --}}
 
 
     </div>
+
+
+    <div class="mt-16 mb-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="rounded-3xl bg-gray-900 py-10 px-6 sm:py-16 sm:px-12 lg:flex lg:items-center lg:p-20">
+            <div class="lg:w-0 lg:flex-1">
+                <h2 class="text-3xl font-bold tracking-tight text-white">Sign up for our newsletter</h2>
+                <p class="mt-4 max-w-3xl text-lg text-gray-100">
+                    Join our community of indoor enthusiasts! Subscribe to receive exclusive updates on our indoor facilities, special promotions, tips for maximizing your indoor experiences, and much more.
+                </p>
+            </div>
+            <div class="mt-12 sm:w-full sm:max-w-md lg:mt-0 lg:ml-8 lg:flex-1">
+                <form action="/subscribe" method="POST" class="sm:flex space-y-2">
+                    @csrf
+                    <label for="email-address" class="sr-only">Email address</label>
+
+                    <input id="email-address"  name="email" type="email" autocomplete="email" class="w-full rounded-md border-white px-5 py-3 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-700" placeholder="Your email">
+
+                    <button type="submit" class="mt-3 flex w-full items-center justify-center rounded-md border border-transparent bg-gray-500 px-5 py-3 text-base font-medium text-white hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-700 sm:mt-0 sm:ml-3 sm:w-auto sm:flex-shrink-0">Subscribe</button>
+                </form>
+                <p class="mt-3 text-sm text-gray-100">
+                    We care about the protection of your data. Read our
+                    <a href="" class="font-medium text-white underline">Privacy Policy.</a>
+                </p>
+            </div>
+        </div>
+    </div>
 </section>
 
 

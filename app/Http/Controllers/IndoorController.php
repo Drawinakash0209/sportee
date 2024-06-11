@@ -72,7 +72,7 @@ class IndoorController extends Controller
 
         // Notify the user
         (new User())->find(auth()->id())->notify(new SystemMessageNotification(
-            'Booking created successfully!',
+            'Your booking has been created successfully! from '.$formFields['start_time'].' to '.$formFields['finish_time'] . ' on '.date('Y-m-d H:i:s') . 'at '. Indoor::find($formFields['indoor_id'])->title,
             'success',
             'Success',
             'success'
@@ -132,7 +132,7 @@ class IndoorController extends Controller
 
         // Notify the user
         (new User())->find(auth()->id())->notify(new SystemMessageNotification(
-            'Booking created successfully!',
+            'Your booking has been created successfully! from '.$formFields['start_time'].' to '.$formFields['finish_time'] . ' on '.date('Y-m-d H:i:s') . 'at '. Indoor::find($formFields['indoor_id'])->title,
             'success',
             'Success',
             'success'
@@ -157,7 +157,7 @@ class IndoorController extends Controller
             $indoorOwner = $indoor->user;
             if ($indoorOwner) {
                 $indoorOwner->notify(new SystemMessageNotification(
-                    'Someone has cancelled the booking from ' . $booking->start_time . ' to ' . $booking->finish_time . ' on ' . now()->format('Y-m-d H:i:s'),
+                    'Someone has cancelled the booking from ' . $booking->start_time . ' to ' . $booking->finish_time . ' on ' . now()->format('Y-m-d H:i:s') . ' at ' . $indoor->title,
                     'danger',
                     'Cancelled',
                     'danger'
@@ -166,7 +166,7 @@ class IndoorController extends Controller
         }
 
         auth()->user()->notify(new SystemMessageNotification(
-            'Booking cancelled successfully!',
+            'Your booking has been cancelled successfully! from ' . $booking->start_time . ' to ' . $booking->finish_time . ' on ' . now()->format('Y-m-d H:i:s') . ' at ' . Indoor::find($booking->indoor_id)->title,
             'danger',
             'Cancelled',
             'danger'
@@ -287,6 +287,72 @@ class IndoorController extends Controller
 
     public function create(){
         return view('indoor.create');
+    }
+
+    public function adminShow(Indoor $indoors){
+        $allIndoors = Indoor::all();
+        $events = [];
+        $bookings = Booking::where('indoor_id', $indoors->id)->get();
+
+        //total booking in this indoor
+        $totalBooking = Booking::where('indoor_id', $indoors->id)->count();
+
+        //total booking in this week
+        $totalBookingThisWeek = Booking::where('indoor_id', $indoors->id)->whereBetween('start_time', [now()->startOfWeek(), now()->endOfWeek()])->count();
+
+        //total booking in this month
+        $totalBookingThisMonth = Booking::where('indoor_id', $indoors->id)->whereBetween('start_time', [now()->startOfMonth(), now()->endOfMonth()])->count();
+
+        //total booking today
+        $totalBookingToday = Booking::where('indoor_id', $indoors->id)->whereDate('start_time', now())->count();
+
+        //get all bookings and group by date and count
+        $bookingAnalysis = Booking::select('id', 'start_time' ) ->where('indoor_id', $indoors->id)->get()->groupBy(function($date) {
+            return \Carbon\Carbon::parse($date->start_time)->format('M');
+        });
+
+        $months = [];
+        $monthCount = [];
+        foreach ($bookingAnalysis as $month => $values){
+            $months[] = $month;
+            $monthCount[] = count($values);
+
+        }
+
+        foreach ($bookings as $booking){
+            $events[]= [
+                'title' => 'Booked',
+                'start' => $booking->start_time,
+                'end' => $booking->finish_time,
+
+            ];
+        }
+        $place = Indoor::find($indoors->id);
+
+        //find the indoor of the online user
+        $indoors = Indoor::where('user_id', auth()->id())->get();
+//        $indoors = Indoor::all();
+
+
+
+        return view('indoor.admin-show', [
+            'indoors'=> $indoors,
+            'bookings'=>$bookings,
+            'place'=>$place,
+            'events'=>$events,
+            'totalBooking'=>$totalBooking,
+            'totalBookingThisWeek'=>$totalBookingThisWeek,
+            'totalBookingThisMonth'=>$totalBookingThisMonth,
+            'totalBookingToday'=>$totalBookingToday,
+            'bookingAnalysis'=>$bookingAnalysis,
+            'months'=>$months,
+            'monthCount'=>$monthCount,
+            'allIndoors'=>$allIndoors
+
+
+        ]);
+
+
     }
 
     //show edit form

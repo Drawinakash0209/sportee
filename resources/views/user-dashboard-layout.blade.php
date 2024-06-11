@@ -15,6 +15,11 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="
+https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js
+"></script>
+
+
 </head>
 
 
@@ -83,17 +88,11 @@
                         @foreach ($indoors as $indoor)
 
                                     <li>
-                                        <a class="py-3.5 w-full flex items-center text-blue-500 hover:text-blue-700 hover:bg-blue-50" href="/clients/{{$indoor['id']}}">
+                                        <a class=" py-3.5 w-full flex items-center text-blue-500 hover:text-blue-700 hover:bg-blue-50" href="/clients/{{$indoor['id']}}">
                                             <span class="ml-5 mr-2.5 w-1 h-7 bg-blue-500 rounded-r-md"></span>
                                             {{$indoor->title}}
                                         </a>
                                     </li>
-
-
-
-
-
-
 
                         @endforeach
                             </ul>

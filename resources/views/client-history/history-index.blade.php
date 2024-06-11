@@ -15,7 +15,7 @@
                         <th class="px-4 py-3">Indoor</th>
                         <th class="px-4 py-3">Start Time</th>
                         <th class="px-4 py-3">Finish Time</th>
-                        <th class="px-4 py-3">Comments</th>
+                        <th class="px-4 py-3">Status</th>
                         <th class="px-4 py-3"> Cancel </th>
 
                         <!-- Add more columns as needed -->
@@ -43,6 +43,8 @@
                                         @csrf
                                         <button type="submit" class="px-4 py-2 font-semibold text-white bg-red-500 rounded hover:bg-red-700">Cancel</button>
                                     </form>
+                                @else
+                                    <span class="px-2 py-1  leading-tight text-red-700 bg-red-100 rounded-sm">Cannot cancel</span>
                                 @endif
                             </td>
 

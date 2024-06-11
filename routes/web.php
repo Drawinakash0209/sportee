@@ -169,7 +169,6 @@ Route::get('/home/tournament/{tournaments}', [TournamentController::class, 'show
 Route::get('/customer/history', [userController::class, 'history']);
 
 Route::get("/notifications", function(Request $request){
-
     return view('notification');
 });
 

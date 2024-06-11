@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use function Livewire\Volt\on;
 use Carbon\Carbon;
 
+
 class IndoorController extends Controller
 {
 
@@ -27,8 +28,24 @@ class IndoorController extends Controller
     public function book(Request $request){
         // Validate form fields
         $formFields = $request->validate([
-            'start_time' => 'required|date_format:Y-m-d\TH:i',
-            'finish_time' => 'required|date_format:Y-m-d\TH:i',
+            'start_time' => [
+                'required',
+                'date_format:Y-m-d\TH:i',
+                function ($attribute, $value, $fail) {
+                    if (Carbon::parse($value)->isPast()) {
+                        $fail('The ' . $attribute . ' must be a future date and time.');
+                    }
+                },
+            ],
+            'finish_time' => [
+                'required',
+                'date_format:Y-m-d\TH:i',
+                function ($attribute, $value, $fail) {
+                    if (Carbon::parse($value)->isPast()) {
+                        $fail('The ' . $attribute . ' must be a future date and time.');
+                    }
+                },
+            ],
             'phoneNumber' => 'required|numeric|digits:10',
             'custName' => 'required|string|max:255',
         ]);
@@ -40,12 +57,10 @@ class IndoorController extends Controller
 
         $overlappingBooking = Booking::where('indoor_id', $indoorId)
             ->where(function($query) use ($startTime, $finishTime) {
-                $query->whereBetween('start_time', [$startTime, $finishTime])
-                    ->orWhereBetween('finish_time', [$startTime, $finishTime])
-                    ->orWhere(function($query) use ($startTime, $finishTime) {
-                        $query->where('start_time', '<=', $startTime)
-                            ->where('finish_time', '>=', $finishTime);
-                    });
+                $query->where(function($query) use ($startTime, $finishTime) {
+                    $query->where('start_time', '<', $finishTime)
+                        ->where('finish_time', '>', $startTime);
+                });
             })
             ->exists();
 
@@ -61,10 +76,16 @@ class IndoorController extends Controller
         // Create the booking
         Booking::create($formFields);
 
+
+
         // Notify the indoor owner
         $indoorowner = Indoor::find($formFields['indoor_id'])->user;
+        $startDateTime = Carbon::parse($formFields['start_time'])->format('Y-m-d H:i');
+        $finishDateTime = Carbon::parse($formFields['finish_time'])->format('Y-m-d H:i');
+        $bookingDateTime = Carbon::now()->format('Y-m-d H:i:s');
+
         $indoorowner->notify(new SystemMessageNotification(
-            'Someone has booked your indoor! from '.$formFields['start_time'].' to '.$formFields['finish_time'] . 'on '.date('Y-m-d H:i:s'),
+            'Someone has booked your indoor from '. Indoor::find($formFields['indoor_id'])->title .$startDateTime.' to '.$finishDateTime.' on '.$bookingDateTime,
             'success',
             'Success',
             'success'
@@ -72,7 +93,7 @@ class IndoorController extends Controller
 
         // Notify the user
         (new User())->find(auth()->id())->notify(new SystemMessageNotification(
-            'Your booking has been created successfully! from '.$formFields['start_time'].' to '.$formFields['finish_time'] . ' on '.date('Y-m-d H:i:s') . 'at '. Indoor::find($formFields['indoor_id'])->title,
+            'Your booking has been created successfully from '.$startDateTime.' to '.$finishDateTime.' at '. Indoor::find($formFields['indoor_id'])->title,
             'success',
             'Success',
             'success'
@@ -100,12 +121,10 @@ class IndoorController extends Controller
 
         $overlappingBooking = Booking::where('indoor_id', $indoorId)
             ->where(function($query) use ($startTime, $finishTime) {
-                $query->whereBetween('start_time', [$startTime, $finishTime])
-                    ->orWhereBetween('finish_time', [$startTime, $finishTime])
-                    ->orWhere(function($query) use ($startTime, $finishTime) {
-                        $query->where('start_time', '<=', $startTime)
-                            ->where('finish_time', '>=', $finishTime);
-                    });
+                $query->where(function($query) use ($startTime, $finishTime) {
+                    $query->where('start_time', '<', $finishTime)
+                        ->where('finish_time', '>', $startTime);
+                });
             })
             ->exists();
 

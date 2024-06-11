@@ -3,6 +3,9 @@
 @extends('layout')
 @section('content')
 
+    @php
+        $now = now()->format('Y-m-d\TH:i');
+@endphp
 
 
     <style>
@@ -251,19 +254,19 @@
                                     <input type="text" name="phoneNumber" id="phone" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
                                 </div>
 
-                                <div class="md:col-span-5">
-                                    <label for="booking_date">Booking Date</label>
-                                    <input type="date" name="booking_date" id="booking_date" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
-                                </div>
+{{--                                <div class="md:col-span-5">--}}
+{{--                                    <label for="booking_date">Booking Date</label>--}}
+{{--                                    <input type="date" name="booking_date" id="booking_date" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" min="{{ now()->toDateString() }}" />--}}
+{{--                                </div>--}}
 
                                 <div class="md:col-span-5">
                                     <label for="start_time">Start Time</label>
-                                    <input type="datetime-local" name="start_time" id="start_time" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+                                    <input type="datetime-local" name="start_time" id="finish_time" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" min="{{ $now }}" />
                                 </div>
 
                                 <div class="md:col-span-5">
                                     <label for="finish_time">End Time</label>
-                                    <input type="datetime-local" name="finish_time" id="finish_time" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+                                    <input type="datetime-local" name="finish_time" id="finish_time" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" min="{{ $now }}" />
                                 </div>
 
                                 <!-- Add more fields as needed -->

@@ -235,6 +235,10 @@
                         <div class="text-gray-600">
                             <p class="font-medium text-lg">Personal Details</p>
                             <p>Please fill out all the fields.</p>
+
+                            <div class="flex-col">
+                                <button class="shadow-lg mt-3 block w-full rounded-md border border-gray-800 bg-gray-800 py-2 text-center text-sm font-semibold text-white hover:bg-gray-900">Price per hour: {{$indoors->price}}</button>
+                            </div>
                         </div>
 
                         <div class="lg:col-span-2">

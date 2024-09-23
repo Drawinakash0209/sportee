@@ -305,7 +305,9 @@ class IndoorController extends Controller
     }
 
     public function create(){
-        return view('indoor.create');
+        return view('indoor.create', [
+            'indoors'=>auth()->user()->indoors
+         ]);
     }
 
     public function adminShow(Indoor $indoors){

@@ -1,7 +1,7 @@
 
 <div>
 <div class="mt-12 antialiased mx-auto max-w-screen-sm">
-    <h3 class="mb-4 text-lg font-semibold text-gray-900">Comments</h3>
+    <h3 class="mb-4 text-lg font-semibold text-gray-900">Reviews</h3>
 
     @forelse($indoors->comments as $comment)
 

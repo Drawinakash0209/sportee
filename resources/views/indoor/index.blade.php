@@ -329,7 +329,7 @@ Feature indoors section --}}
 
 {{-- Our partners section  --}}
 
-<section class=" relative bg-white sm:py-10 lg:py-16 lg:pt-10">
+{{-- <section class=" relative bg-white sm:py-10 lg:py-16 lg:pt-10">
 
 
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 text-center  ">
@@ -409,7 +409,7 @@ Feature indoors section --}}
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 
 
 

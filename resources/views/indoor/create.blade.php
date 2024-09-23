@@ -1,5 +1,3 @@
-
-
 @extends('user-dashboard-layout')
 
 @section('content')

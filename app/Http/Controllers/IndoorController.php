@@ -233,11 +233,13 @@ class IndoorController extends Controller
 
             ];
         }
+        $days = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 
         return view('indoor.show', [
             'indoors'=> $indoors,
             'gallery'=>$gallery,
-            'events'=>$events
+            'events'=>$events,
+            'days'=>$days
 
         ]);
     }
@@ -415,7 +417,21 @@ class IndoorController extends Controller
             'website' => 'required',
             'description' => 'required',
             'contact_number' => 'required',
-            'price' => 'required'
+            'price' => 'required',
+            'monday_opening' => 'nullable',
+            'monday_closing' => 'nullable',
+            'tuesday_opening' => 'nullable',
+            'tuesday_closing' => 'nullable',
+            'wednesday_opening' => 'nullable',
+            'wednesday_closing' => 'nullable',
+            'thursday_opening' => 'nullable',
+            'thursday_closing' => 'nullable',
+            'friday_opening' => 'nullable',
+            'friday_closing' => 'nullable',
+            'saturday_opening' => 'nullable',
+            'saturday_closing' => 'nullable',
+            'sunday_opening' => 'nullable',
+            'sunday_closing' => 'nullable',
 
         ]);
 

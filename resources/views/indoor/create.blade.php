@@ -187,11 +187,48 @@ class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
     </div>
 
     <div class="mb-6">
+        <h3 class="text-lg font-semibold mb-4">Opening and Closing Times</h3>
+    
+        @php
+            $days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+        @endphp
+    
+        @foreach($days as $day)
+            <div class="mb-4">
+                <label class="block mb-2 capitalize">{{ ucfirst($day) }} Opening Time</label>
+                <input
+                    type="time"
+                    name="{{ $day }}_opening"
+                    class="border border-gray-200 rounded p-2 w-full"
+                />
+    
+                @error("{$day}_opening")
+                <p class="text-red-500 text-xs mt-1"> {{$message}}</p>
+                @enderror
+            </div>
+    
+            <div class="mb-4">
+                <label class="block mb-2 capitalize">{{ ucfirst($day) }} Closing Time</label>
+                <input
+                    type="time"
+                    name="{{ $day }}_closing"
+                    class="border border-gray-200 rounded p-2 w-full"
+                />
+    
+                @error("{$day}_closing")
+                <p class="text-red-500 text-xs mt-1"> {{$message}}</p>
+                @enderror
+            </div>
+        @endforeach
+    </div>
+    
+
+    <div class="mb-6">
         <label
             for="description"
             class="inline-block text-lg mb-2"
         >
-            Job Description
+             Description
         </label>
         <textarea
             class="border border-gray-200 rounded p-2 w-full"

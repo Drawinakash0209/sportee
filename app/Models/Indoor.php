@@ -9,7 +9,14 @@ class Indoor extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'tags', 'location', 'email', 'website', 'description','contact_number', 'price','user_id','photo', 'gallery'];
+    protected $fillable = ['title', 'tags', 'location', 'email', 'website', 'description','contact_number', 'price','user_id','photo', 'gallery', 
+    'monday_opening', 'monday_closing',
+    'tuesday_opening', 'tuesday_closing',
+    'wednesday_opening', 'wednesday_closing',
+    'thursday_opening', 'thursday_closing',
+    'friday_opening', 'friday_closing',
+    'saturday_opening', 'saturday_closing',
+    'sunday_opening', 'sunday_closing'];
 
 
     public function scopeFilters($query, array $filter){

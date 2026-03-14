@@ -73,52 +73,69 @@
 
 
 
-    <div class="bg-white ">
+    <div class="bg-white">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
-
             <div class="mx-auto mt-10 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
                 <div class="p-8 sm:p-10 lg:flex-auto">
                     <h3 class="text-2xl font-bold tracking-tight text-gray-900">Location and Opening Times</h3>
-                    <p class="mt-6 text-base leading-7 text-gray-600">{{$indoors['location']}}</p>
+                    <p class="mt-6 text-base leading-7 text-gray-600">{{ $indoors->location }}</p>
                     <div class="flex flex-wrap justify-left">
                         <div class="w-full md:max-w-md mx-4 mt-8">
-                            <div class="antialiased sans-serif ">
+                            <div class="antialiased sans-serif">
                                 <ul class="divide-y divide-gray-200">
                                     <li class="py-2 flex">
                                         <div class="w-1/3 text-gray-600">Sun</div>
-                                        <div class="w-2/3 text-gray-800">9:00am - 8:00pm</div>
+                                        <div class="w-2/3 text-gray-800">
+                                            {{ date('h:i A', strtotime($indoors->sunday_opening)) }} - 
+                                            {{ date('h:i A', strtotime($indoors->sunday_closing)) }}
+                                        </div>
                                     </li>
                                     <li class="py-2 flex">
                                         <div class="w-1/3 text-gray-600">Mon</div>
-                                        <div class="w-2/3 text-gray-800">5:00pm - 10:00pm</div>
+                                        <div class="w-2/3 text-gray-800">
+                                            {{ date('h:i A', strtotime($indoors->monday_opening)) }} - 
+                                            {{ date('h:i A', strtotime($indoors->monday_closing)) }}
+                                        </div>
                                     </li>
                                     <li class="py-2 flex">
                                         <div class="w-1/3 text-gray-600">Tue</div>
-                                        <div class="w-2/3 text-gray-800">5:00pm - 10:00pm</div>
+                                        <div class="w-2/3 text-gray-800">
+                                            {{ date('h:i A', strtotime($indoors->tuesday_opening)) }} - 
+                                            {{ date('h:i A', strtotime($indoors->tuesday_closing)) }}
+                                        </div>
                                     </li>
                                     <li class="py-2 flex">
                                         <div class="w-1/3 text-gray-600">Wed</div>
-                                        <div class="w-2/3 text-gray-800">4:30pm - 10:00pm</div>
+                                        <div class="w-2/3 text-gray-800">
+                                            {{ date('h:i A', strtotime($indoors->wednesday_opening)) }} - 
+                                            {{ date('h:i A', strtotime($indoors->wednesday_closing)) }}
+                                        </div>
                                     </li>
                                     <li class="py-2 flex">
                                         <div class="w-1/3 text-gray-600">Thu</div>
-                                        <div class="w-2/3 text-gray-800">4:30pm - 10:00pm</div>
+                                        <div class="w-2/3 text-gray-800">
+                                            {{ date('h:i A', strtotime($indoors->thursday_opening)) }} - 
+                                            {{ date('h:i A', strtotime($indoors->thursday_closing)) }}
+                                        </div>
                                     </li>
                                     <li class="py-2 flex">
                                         <div class="w-1/3 text-gray-600">Fri</div>
-                                        <div class="w-2/3 text-gray-800">5:00pm - 10:00pm</div>
+                                        <div class="w-2/3 text-gray-800">
+                                            {{ date('h:i A', strtotime($indoors->friday_opening)) }} - 
+                                            {{ date('h:i A', strtotime($indoors->friday_closing)) }}
+                                        </div>
                                     </li>
                                     <li class="py-2 flex">
                                         <div class="w-1/3 text-gray-600">Sat</div>
-                                        <div class="w-2/3 text-gray-800">9:00am - 7:00pm</div>
+                                        <div class="w-2/3 text-gray-800">
+                                            {{ date('h:i A', strtotime($indoors->saturday_opening)) }} - 
+                                            {{ date('h:i A', strtotime($indoors->saturday_closing)) }}
+                                        </div>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-
-
-
                 </div>
                 <div class="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
                     <div class="rounded-2xl bg-gray-50 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
@@ -129,7 +146,9 @@
                 </div>
             </div>
         </div>
-    </div>
+         
+</div>
+
 
 
     <h3 class="mt-16 mx-auto max-w-7xl px-6 lg:px-8 text-2xl font-bold tracking-tight text-gray-900">About</h3>
